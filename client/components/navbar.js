@@ -6,25 +6,37 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>BOILERMAKER</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )}
-    </nav>
-    <hr />
+    <h1>Coding Books</h1>
+
+    <div className="ui secondary pointing menu">
+      <Link to="/home" className="active item">
+        Home
+      </Link>
+      <Link to="/products" className="item">
+        Product List
+      </Link>
+      <div className="right menu">
+        {!isLoggedIn ? (
+          <div>
+            <Link to="/login" className="ui right labeled icon button">
+              <i className="right arrow icon" />
+              Log in
+            </Link>
+          </div>
+        ) : (
+          <div>
+            <button
+              type="button"
+              onClick={handleClick}
+              className="ui left labeled icon button"
+            >
+              <i className="left arrow icon" />
+              Log Out
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
   </div>
 )
 

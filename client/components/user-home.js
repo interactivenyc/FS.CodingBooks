@@ -6,7 +6,8 @@ import {connect} from 'react-redux'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  const {email = 'Not Logged In'} = props
+  console.log('[UserHome] render email:', email)
 
   return (
     <div>
