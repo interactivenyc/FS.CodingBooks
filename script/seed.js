@@ -9,8 +9,21 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({
+      lastName: 'Pug',
+      firstName: 'Cody',
+      address: '51 Cody Drive, Pug Street NY 00000',
+      phone: '123-456-7891',
+      image: 'https://odadee.net/themes/default/assets/images/default.jpg',
+      email: 'cody@email.com', 
+      password: '123'}),
+    User.create({
+      lastName: 'Cat',
+      firstName: 'Murphy',
+      address: '52 Murff Drive, Cat Street NY 00000',
+      phone: '987-675-4321',
+      email: 'murphy@email.com', 
+      password: '123'})
   ])
 
   const category = await Promise.all([Category.create({name: 'Javascript'})])
