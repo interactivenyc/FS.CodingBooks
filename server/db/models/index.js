@@ -11,11 +11,11 @@ const Category = require('./category')
 
 Product.belongsToMany(Category, {
   through: 'category_associations',
-  foreignKey: 'categoryId'
+  foreignKey: 'productId'
 })
 Category.belongsToMany(Product, {
   through: 'category_associations',
-  foreignKey: 'productId'
+  foreignKey: 'categoryId'
 })
 
 /**

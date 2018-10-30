@@ -1,15 +1,56 @@
 import React from 'react'
+import axios from 'axios'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {allProducts} from '../store/product'
 
 class ProductList extends React.Component {
+  componentDidMount() {
+    this.props.fetchAllProducts()
+  }
+
   render() {
-    return <div>{console.log(`PROPS HERE: `, this.props)}</div>
+    const allProductsArr = this.props.product
+    return (
+      <div>
+        {allProductsArr.map(product => {
+          return (
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <Link to={`/product/${product.id}`}>
+                      <img src={product.photo} />
+                    </Link>
+                  </td>
+                  <td>
+                    <Link to={`/product/${product.id}`}>
+                      <div>Title: {product.title}</div>
+                    </Link>
+                    <div>Price: {product.price}</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          )
+        })}
+      </div>
+    )
   }
 }
 
-const mapStateToProps = ({product}) => ({...product})
+const mapStateToProps = state => ({
+  product: state.product
+})
 
-const ConnectedProductList = connect(mapStateToProps)(ProductList)
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchAllProducts: () => dispatch(allProducts())
+  }
+}
+
+const ConnectedProductList = connect(mapStateToProps, mapDispatchToProps)(
+  ProductList
+)
 
 export default ConnectedProductList

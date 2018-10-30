@@ -10,7 +10,7 @@ const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 /**
  * INITIAL STATE
  */
-const defaultProduct = {}
+const defaultProduct = []
 
 /**
  * ACTION CREATORS
@@ -21,7 +21,7 @@ const getProduct = product => ({type: GET_PRODUCT, product})
 /**
  * THUNK CREATORS
  */
-export const allProduct = () => async dispatch => {
+export const allProducts = () => async dispatch => {
   try {
     const res = await axios.get('/api/products')
     dispatch(getProduct(res.data))
@@ -45,7 +45,7 @@ export const allProduct = () => async dispatch => {
 export default function(state = defaultProduct, action) {
   switch (action.type) {
     case GET_PRODUCT:
-      return action.product
+      return [...action.product]
     // case REMOVE_USER:
     //   return defaultUser
     default:
