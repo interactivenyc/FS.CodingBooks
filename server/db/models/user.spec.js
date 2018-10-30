@@ -15,6 +15,11 @@ describe('User model', () => {
 
       beforeEach(async () => {
         cody = await User.create({
+          lastName: 'Pug',
+          firstName: 'Cody',
+          address: '51 Cody Drive, Pug Street NY 00000',
+          phone: '123-456-7891',
+          image: 'https://odadee.net/themes/default/assets/images/default.jpg',
           email: 'cody@puppybook.com',
           password: 'bones'
         })
