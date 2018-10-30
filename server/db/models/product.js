@@ -10,11 +10,11 @@ const Product = db.define('product', {
     type: Sequelize.TEXT
   },
   price: {
-    type: Sequelize.FLOAT,
+    type: Sequelize.DECIMAL(10, 2),
     allowNull: false
   },
   inventoryQuantity: {
-    type: Sequelize.DECIMAL(10, 2),
+    type: Sequelize.INTEGER,
     defaultValue: 0
   },
   photo: {
