@@ -23,6 +23,13 @@ const User = db.define('user', {
     allowNull: false,
     defaultValue: false
   },
+  image: {
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true
+    },
+    defaultValue: 'https://odadee.net/themes/default/assets/images/default.jpg'
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,

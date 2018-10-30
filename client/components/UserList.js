@@ -7,19 +7,26 @@ class UserList extends Component {
         super(props)
     }
 
-    componentDidMount () {
+    componentDidMount() {
         this.props.fetchAllUsers()
     }
-    
-    render () {
+
+    render() {
+        const allUsersArr = this.props.allUsers
         return (
             <div>
                 <h1>List of Users</h1>
-                <div>
-                    <div>name</div>
-                    <div>address</div>
-                    <div>phone</div>
-                </div>
+                {allUsersArr.map(obj => {
+                    return (
+                        <div key={obj.id}>
+                            <img src={obj.image}></img>
+                            <div>Name: {obj.firstName} {obj.lastName}</div>
+                            <div>Email: {obj.email}</div>
+                            <div>Phone: {obj.phone}</div>
+                            <div>Admin Status: {obj.isAdmin}</div>
+                        </div>
+                    )
+                })}
             </div>
         )
     }
@@ -27,8 +34,8 @@ class UserList extends Component {
 
 const mapStateToProps = state => {
     return {
-            allUsers: state.allUsers
-        }
+        allUsers: state.allUsers
+    }
 }
 
 const mapDispatchToProps = dispatch => {
