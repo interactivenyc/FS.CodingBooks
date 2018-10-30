@@ -14,14 +14,14 @@ notifications:
 install:
   - npm ci # faster, goes only from package-lock
 before_script:
-  - psql -c 'create database "boilermaker-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
+  - psql -c 'create database "codingbooks-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: codingbooks # see README
+  api_key:
+    secure: 'HgSV9Bhy4IenXwt0ZmnQvUHfoSkS4QiSPFPdmk9JVrSFgp9vbMafdALUfLdxRQLw2u3FqudOboSuNuDL7T79zSFvtG4O/ENFuT9r/iPD0DHjCnuWYxnpDZo3ae+ctM0v/LNAt8/Nj2a8oCoidtlDRoQCMmavAS8J+4JXinyoNBnrFG18ryyo1ocu7Yw72rJ4xpBs3+XntTIAc8QjYQe0SdSGQa+AqwnS5KPPvK+5EcC/y8RaLKMtXIxot7qQSBWtWBs+obmJEqAePMQfxeLxfb83GQuWkehLw18dr1RAshkLB3lZbtdVN9u6VtFRn89oBn5bLHfkLDIVSQ1PDLzYJxg89sKpxx5giVYEqjhQw09zwCfMm0/xpsdX4XcXmj8XluyZ/xthRzIbOfkv32p7naD/suyaSVwveki5bRAv80crtPTRVUx/Fi27SBj9iiEISn89wSPnQIMo3caq1BN+oWFmGjnYpgTgLR6LjgBpFbsfVEuJTuJs4s224cHz3oMF+Xselz1/Tdzrehcd8LJPtELOtznKHeNP9AlCjrlIfgbPiyxltbyV57bP8IA6ePKjnfq3HUpm4X8axvRr/iMlF+voDDMFPG9rQSHxybn7FYh2wWSQgAp/HbkxlQnu7HyFv48w6ENQxuc0rAXVtbV8iF38DEfvjqHI55RYwy4G/Fo=' # see README
