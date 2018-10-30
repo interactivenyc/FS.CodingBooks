@@ -8,7 +8,7 @@ class UserList extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchAllUsers()
+        // this.props.fetchAllUsers()
     }
 
     render() {
@@ -38,10 +38,10 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchAllUsers: () => dispatch(fetchAllUsers())
-    }
-}
+// const mapDispatchToProps = dispatch => {
+//     return {
+//         fetchAllUsers: () => dispatch(fetchAllUsers())
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserList)
+export default connect(mapStateToProps)(UserList)

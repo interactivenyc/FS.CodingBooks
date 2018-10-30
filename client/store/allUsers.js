@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 //action types
-const GETALLUSERS = 'GETALLUSERS'
+const GET_ALL_USERS = 'GET_ALL_USERS'
 
 //action creators
 const getAllUsers = allUsers => ({
-    type: GETALLUSERS,
+    type: GET_ALL_USERS,
     payload: allUsers
 })
 
@@ -21,7 +21,7 @@ export const fetchAllUsers = () => {
 //reducer
 export default function reducer (prevState = [], action) {
     switch (action.type) {
-        case GETALLUSERS:
+        case GET_ALL_USERS:
             return [...action.payload]
         default:
             return prevState

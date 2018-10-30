@@ -7,6 +7,7 @@ import ProductList from './components/ProductList'
 import UserList from './components/UserList'
 
 import {me} from './store'
+import { fetchAllUsers } from './store/allUsers';
 
 /**
  * COMPONENT
@@ -49,6 +50,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      dispatch(fetchAllUsers())
     }
   }
 }
