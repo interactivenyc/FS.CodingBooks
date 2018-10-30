@@ -4,7 +4,10 @@ import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import ProductList from './components/ProductList'
+import UserList from './components/UserList'
+
 import {me} from './store'
+import { fetchAllUsers } from './store/allUsers';
 
 /**
  * COMPONENT
@@ -25,6 +28,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/products" component={ProductList} />
+        <Route path='/users' component={UserList} />
       </Switch>
     )
   }
@@ -34,6 +38,7 @@ class Routes extends Component {
  * CONTAINER
  */
 const mapState = state => {
+  // console.log('ROUTER MAP STATE', state)
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
@@ -45,6 +50,7 @@ const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
+      dispatch(fetchAllUsers())
     }
   }
 }

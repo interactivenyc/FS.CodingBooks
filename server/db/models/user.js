@@ -3,6 +3,33 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const User = db.define('user', {
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  address: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  phone: {
+    type: Sequelize.STRING,
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  },
+  image: {
+    type: Sequelize.STRING,
+    validate: {
+      isUrl: true
+    },
+    defaultValue: 'https://odadee.net/themes/default/assets/images/default.jpg'
+  },
   email: {
     type: Sequelize.STRING,
     unique: true,
