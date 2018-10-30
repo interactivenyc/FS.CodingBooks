@@ -8,7 +8,6 @@ class UserList extends Component {
     }
 
     componentDidMount () {
-        console.log('LOOK HERE', this.props)
         this.props.fetchAllUsers()
     }
     
