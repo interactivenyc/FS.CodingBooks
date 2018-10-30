@@ -9,8 +9,14 @@ const Category = require('./category')
  *    BlogPost.belongsTo(User)
  */
 
-Product.belongsToMany(Category, {through: 'Category', foreignKey: 'categoryId'})
-Category.belongsToMany(Product, {through: 'Category', foreignKey: 'productId'})
+Product.belongsToMany(Category, {
+  through: 'category_associations',
+  foreignKey: 'categoryId'
+})
+Category.belongsToMany(Product, {
+  through: 'category_associations',
+  foreignKey: 'productId'
+})
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -20,6 +26,6 @@ Category.belongsToMany(Product, {through: 'Category', foreignKey: 'productId'})
  */
 module.exports = {
   User,
-  Product,
-  Category
+  Category,
+  Product
 }
