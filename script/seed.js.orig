@@ -18,6 +18,8 @@ async function seed() {
       email: 'cody@email.com',
       password: '123'
     }),
+<<<<<<< Updated upstream
+=======
     User.create({
       lastName: 'Cat',
       firstName: 'Murphy',
@@ -43,11 +45,15 @@ async function seed() {
       email: 'murphay@email.com',
       password: '123'
     }),
+>>>>>>> Stashed changes
     User.create({
       lastName: 'Cat',
       firstName: 'Murphy',
       address: '52 Murff Drive, Cat Street NY 00000',
       phone: '987-675-4321',
+<<<<<<< Updated upstream
+      email: 'murphy@email.com',
+=======
       email: 'murphcy@email.com',
       password: '123'
     }),
@@ -73,15 +79,20 @@ async function seed() {
       address: '52 Murff Drive, Cat Street NY 00000',
       phone: '987-675-4321',
       email: 'murphooy@email.com',
+>>>>>>> Stashed changes
       password: '123'
     })
   ])
 
+<<<<<<< Updated upstream
   const category = await Promise.all([
     Category.create({name: 'Javascript'}),
     Category.create({name: 'Algorithm'}),
     Category.create({name: 'React'})
   ])
+=======
+  const category = await Promise.all([Category.create({ name: 'Javascript' })])
+>>>>>>> Stashed changes
 
   const product = await Promise.all([
     Product.create({
@@ -110,9 +121,14 @@ async function seed() {
   ])
 
   const association = await Promise.all([
+<<<<<<< Updated upstream
     CategoryAssociations.create({productId: 1, categoryId: 1}),
     CategoryAssociations.create({productId: 2, categoryId: 1}),
     CategoryAssociations.create({productId: 3, categoryId: 2})
+=======
+    CategoryAssociations.create({ productId: 1, categoryId: 1 }),
+    CategoryAssociations.create({ productId: 2, categoryId: 1 })
+>>>>>>> Stashed changes
   ])
 
   console.log(`seeded ${users.length} users`)
