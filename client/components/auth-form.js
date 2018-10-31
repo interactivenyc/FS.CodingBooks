@@ -10,51 +10,94 @@ import {Link} from 'react-router-dom'
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
+  console.log('[ AuthForm ] render', name)
+
   return (
     <div>
       <div className="ui middle aligned center aligned very padded grid">
         <div className="column">
           <h2 className="ui image header">
-            <div className="content">Log-in to your account</div>
+            {name === 'signup' ? (
+              <div className="content">Sign Up for a New Account</div>
+            ) : (
+              <div className="content">Log In to Your Account</div>
+            )}
           </h2>
           <form onSubmit={handleSubmit} name={name} className="ui large form">
             <div className="ui stacked secondary  segment">
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="user icon" />
+              <div>
+                <div className="field">
+                  <div className="ui left icon input">
+                    <i className="user icon" />
 
-                  <input
-                    type="text"
-                    name="email"
-                    placeholder="E-mail address"
-                  />
+                    <input
+                      type="text"
+                      name="email"
+                      placeholder="E-mail address"
+                    />
+                  </div>
+                </div>
+                <div className="field">
+                  <div className="ui left icon input">
+                    <i className="lock icon" />
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="field">
-                <div className="ui left icon input">
-                  <i className="lock icon" />
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                  />
-                </div>
-              </div>
+
+              {name === 'signup' ? (
+                <React.Fragment>
+                  <div className="field">
+                    <div className="ui left icon input">
+                      <i className="user icon" />
+
+                      <input
+                        type="text"
+                        name="firstName"
+                        placeholder="First Name"
+                      />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <div className="ui left icon input">
+                      <i className="lock icon" />
+                      <input
+                        type="text"
+                        name="lastName"
+                        placeholder="Last Name"
+                      />
+                    </div>
+                  </div>
+                </React.Fragment>
+              ) : (
+                <div />
+              )}
+
               <button
                 type="submit"
-                className="ui fluid large teal submit button"
+                className="ui padding fluid large teal submit button"
+                style={{marginBottom: '10px'}}
               >
                 {displayName}
               </button>
-              <hr />
-              <a
-                target="_self"
-                href="/auth/google"
-                className="ui fluid large teal submit button"
-              >
-                <i className="fa fa-google" />
-                <span>{displayName} with Google</span>
-              </a>
+
+              {name === 'signup' ? (
+                <span />
+              ) : (
+                <a
+                  target="_self"
+                  href="/auth/google"
+                  className="ui padding fluid large teal submit button"
+                >
+                  <i className="fa fa-google" />
+
+                  <span>{displayName} with Google</span>
+                </a>
+              )}
             </div>
           </form>
           {error &&
@@ -107,7 +150,16 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+
+      console.log('[auth-form] submit', formName)
+
+      if (formName === 'signup') {
+        const firstName = evt.target.firstName.value
+        const lastName = evt.target.lastName.value
+        dispatch(auth(email, password, formName, firstName, lastName))
+      } else {
+        dispatch(auth(email, password, formName))
+      }
     }
   }
 }
