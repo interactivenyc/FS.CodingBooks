@@ -8,7 +8,7 @@ const GET_CATEGORY = 'GET_CATEGORY'
 /**
  * INITIAL STATE
  */
-const defaultProduct = []
+const defaultCategory = []
 
 /**
  * ACTION CREATORS
@@ -31,7 +31,7 @@ export const fetchAllCategories = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultProduct, action) {
+export default function(state = defaultCategory, action) {
   switch (action.type) {
     case GET_CATEGORY:
       return [...action.category]

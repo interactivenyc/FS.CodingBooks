@@ -2,16 +2,21 @@ import React from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {NavDropdown, MenuItem} from 'react-bootstrap'
 
 class ProductList extends React.Component {
-  // componentDidMount() {
-  //   this.props.fetchAllProducts()
-  // }
-
   render() {
     const allProductsArr = this.props.product
+    const allCategoriesArr = this.props.category
+    console.log(allCategoriesArr)
+
     return (
       <div>
+        <NavDropdown title="Select a category to filter" id="nav-dropdown">
+          {allCategoriesArr.map(category => (
+            <MenuItem key={category.id}>{category.name}</MenuItem>
+          ))}
+        </NavDropdown>
         <table>
           <tbody>
             {allProductsArr.map(product => {
@@ -39,7 +44,8 @@ class ProductList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  product: state.product
+  product: state.product,
+  category: state.category
 })
 
 // const mapDispatchToProps = dispatch => {

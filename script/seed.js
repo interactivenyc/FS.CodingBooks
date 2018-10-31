@@ -15,18 +15,24 @@ async function seed() {
       address: '51 Cody Drive, Pug Street NY 00000',
       phone: '123-456-7891',
       image: 'https://odadee.net/themes/default/assets/images/default.jpg',
-      email: 'cody@email.com', 
-      password: '123'}),
+      email: 'cody@email.com',
+      password: '123'
+    }),
     User.create({
       lastName: 'Cat',
       firstName: 'Murphy',
       address: '52 Murff Drive, Cat Street NY 00000',
       phone: '987-675-4321',
-      email: 'murphy@email.com', 
-      password: '123'})
+      email: 'murphy@email.com',
+      password: '123'
+    })
   ])
 
-  const category = await Promise.all([Category.create({name: 'Javascript'})])
+  const category = await Promise.all([
+    Category.create({name: 'Javascript'}),
+    Category.create({name: 'Algorithm'}),
+    Category.create({name: 'React'})
+  ])
 
   const product = await Promise.all([
     Product.create({
