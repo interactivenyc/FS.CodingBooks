@@ -1,11 +1,11 @@
 'use strict'
 
 const db = require('../server/db')
-const { User, Category, Product } = require('../server/db/models')
+const {User, Category, Product} = require('../server/db/models')
 const CategoryAssociations = db.model('category_associations')
 
 async function seed() {
-  await db.sync({ force: true })
+  await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
@@ -23,7 +23,8 @@ async function seed() {
       firstName: 'Murphy',
       address: '52 Murff Drive, Cat Street NY 00000',
       phone: '987-675-4321',
-      image: 'https://images.onlinelabels.com/images/clip-art/dagobert83/dagobert83_female_user_icon.png',
+      image:
+        'https://images.onlinelabels.com/images/clip-art/dagobert83/dagobert83_female_user_icon.png',
       email: 'murphfy@email.com',
       password: '123'
     }),
@@ -97,7 +98,8 @@ async function seed() {
         "Eloquent JavaScript dives into this flourishing language and teaches you to write code that's beautiful and effective. By immersing you in example code and encouraging experimentation right from the start, the author quickly gives you the tools you need to build your own programs.",
       price: 17.99,
       inventoryQuantity: 20,
-      photo: '/Eloquent Javascript.jpg'
+      photo:
+        'https://images-na.ssl-images-amazon.com/images/I/515jiKSErDL._SX376_BO1,204,203,200_.jpg'
     }),
     Product.create({
       title: 'Algorithms Edition 4',

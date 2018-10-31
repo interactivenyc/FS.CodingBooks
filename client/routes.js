@@ -6,10 +6,10 @@ import {Login, Signup, UserHome} from './components'
 import ConnectedProductList from './components/ProductList'
 import UserList from './components/UserList'
 import {me} from './store'
-import { fetchAllUsers } from './store/allUsers';
-import { allProducts } from './store/product';
+import {fetchAllUsers} from './store/allUsers'
 import {fetchAllProducts} from './store/product'
 import {fetchAllCategories} from './store/category'
+import SingleProduct from './components/SingleProduct'
 
 /**
  * COMPONENT
@@ -29,7 +29,8 @@ class Routes extends Component {
         <Route path="/home" component={UserHome} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/products" component={ConnectedProductList} />
+        <Route path="/products/:id" component={SingleProduct} />
+        <Route exact path="/products" component={ConnectedProductList} />
         <Route path="/users" component={UserList} />
       </Switch>
     )
@@ -55,7 +56,6 @@ const mapDispatch = dispatch => {
       dispatch(fetchAllUsers())
       dispatch(fetchAllProducts())
       dispatch(fetchAllCategories())
-      dispatch(allProducts())
     }
   }
 }
