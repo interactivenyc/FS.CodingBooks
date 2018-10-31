@@ -29,12 +29,24 @@ form div {
   display: inline-block;
 }
 
+.item {
+  margin: 50px 50px 50px 50px;
+  display: flex
+}
+
+.item img {
+  max-width: 200px;
+}
+
+.content {
+  margin: auto 50px 50px 50px
+}
+
+div.td { align-self: center; }
 .navHeader:first-child {
   margin: 12px;
 }
 
-.bgBlue {
-}
 
 .ui.secondary.menu.bgBlue.rightMenu {
   margin-right: 10px;

@@ -91,7 +91,9 @@ async function seed() {
       description:
         "No matter how much experience you have with JavaScript, odds are you don't fully understand the language. This concise yet in-depth guide takes you inside scope and closures, two core concepts you need to know to become a more efficient and effective JavaScript programmer. You'll learn how and why they work, and how an understanding of closures can be a powerful part of your development skillset. Like other books in the `You Don't Know JS` series, Scope and Closures dives into trickier parts of the language that many JavaScript programmers simply avoid. Armed with this knowledge, you can achieve true JavaScript mastery. Learn about scope, a set of rules to help JavaScript engines locate variables in your code Go deeper into nested scope, a series of containers for variables and functions Explore function- and block-based scope,?hoisting?, and the patterns and benefits of scope-based hiding Discover how to use closures for synchronous and asynchronous tasks, including the creation of JavaScript libraries.",
       price: 34.99,
-      inventoryQuantity: 20
+      inventoryQuantity: 20,
+      photo:
+        'https://prodimage.images-bn.com/pimages/9781491904244_p0_v4_s550x406.jpg'
     }),
     Product.create({
       title: 'Eloquent JavaScript: A Modern Introduction to Programming',
