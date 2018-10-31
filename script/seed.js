@@ -16,7 +16,8 @@ async function seed() {
       phone: '123-456-7891',
       image: 'https://odadee.net/themes/default/assets/images/default.jpg',
       email: 'cody@email.com',
-      password: '123'
+      password: '123',
+      isAdmin: true
     }),
     User.create({
       lastName: 'Cat',
