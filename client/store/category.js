@@ -4,16 +4,22 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const GET_CATEGORY = 'GET_CATEGORY'
+const SELECT_CATEGORY = 'SELECT_CATEGORY'
 
 /**
  * INITIAL STATE
  */
-const defaultCategory = []
+const defaultCategory = {
+  allCategories: [],
+  selectedCategory: {}
+}
 
 /**
  * ACTION CREATORS
  */
 const getCategory = category => ({type: GET_CATEGORY, category})
+const selectOneCategory = category => ({type: SELECT_CATEGORY, category})
+
 // const removeProduct = id => ({type: REMOVE_PRODUCT, id})
 
 /**
@@ -28,15 +34,24 @@ export const fetchAllCategories = () => async dispatch => {
     console.error(err)
   }
 }
+
+export const selectCategory = categoryId => async dispatch => {
+  try {
+    const res = await axios.get(`api/products/categories/${categoryId}`)
+    dispatch(selectOneCategory(res.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
 /**
  * REDUCER
  */
 export default function(state = defaultCategory, action) {
   switch (action.type) {
     case GET_CATEGORY:
-      return [...action.category]
-    // case REMOVE_USER:
-    //   return defaultUser
+      return {...state, allCategories: action.category}
+    case SELECT_CATEGORY:
+      return {...state, selectedCategory: action.category}
     default:
       return state
   }

@@ -21,3 +21,12 @@ router.get('/categories', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/categories/:id', async (req, res, next) => {
+  try {
+    const selectedCategory = await Category.findById(req.params.id)
+    res.json(selectedCategory)
+  } catch (err) {
+    next(err)
+  }
+})

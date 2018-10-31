@@ -3,20 +3,28 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {NavDropdown, MenuItem} from 'react-bootstrap'
+import {selectCategory} from '../store/category'
 
 class ProductList extends React.Component {
   render() {
     const allProductsArr = this.props.product
-    const allCategoriesArr = this.props.category
-    console.log(allCategoriesArr)
+    const allCategoriesArr = this.props.allCategory
+    const selectedCategory = this.props.selectedCategory
 
     return (
       <div>
+        {console.log(this.props.selectedCategory)}
         <NavDropdown title="Select a category to filter" id="nav-dropdown">
           {allCategoriesArr.map(category => (
-            <MenuItem key={category.id}>{category.name}</MenuItem>
+            <MenuItem
+              key={category.id}
+              onSelect={() => this.props.selectCategory(category.id)}
+            >
+              {category.name}
+            </MenuItem>
           ))}
         </NavDropdown>
+        <br />
         <table>
           <tbody>
             {allProductsArr.map(product => {
@@ -45,15 +53,18 @@ class ProductList extends React.Component {
 
 const mapStateToProps = state => ({
   product: state.product,
-  category: state.category
+  allCategory: state.category.allCategories,
+  selectedCategory: state.category.selectedCategory
 })
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchAllProducts: () => dispatch(allProducts())
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    selectCategory: id => dispatch(selectCategory(id))
+  }
+}
 
-const ConnectedProductList = connect(mapStateToProps, null)(ProductList)
+const ConnectedProductList = connect(mapStateToProps, mapDispatchToProps)(
+  ProductList
+)
 
 export default ConnectedProductList
