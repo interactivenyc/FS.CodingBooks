@@ -6,10 +6,14 @@ import {Login, Signup, UserHome} from './components'
 import ConnectedProductList from './components/ProductList'
 import UserList from './components/UserList'
 import {me} from './store'
-import { fetchAllUsers } from './store/allUsers';
-import { allProducts } from './store/product';
+<<<<<<< Updated upstream
+import {fetchAllUsers} from './store/allUsers'
 import {fetchAllProducts} from './store/product'
 import {fetchAllCategories} from './store/category'
+=======
+import { fetchAllUsers } from './store/allUsers';
+import { allProducts } from './store/product';
+>>>>>>> Stashed changes
 
 /**
  * COMPONENT
@@ -53,9 +57,12 @@ const mapDispatch = dispatch => {
     loadInitialData() {
       dispatch(me())
       dispatch(fetchAllUsers())
+<<<<<<< Updated upstream
       dispatch(fetchAllProducts())
       dispatch(fetchAllCategories())
+=======
       dispatch(allProducts())
+>>>>>>> Stashed changes
     }
   }
 }
