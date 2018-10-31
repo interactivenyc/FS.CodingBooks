@@ -10,6 +10,7 @@ import {fetchAllUsers} from './store/allUsers'
 import {fetchAllProducts} from './store/product'
 import {fetchAllCategories} from './store/category'
 import SingleProduct from './components/SingleProduct'
+import Cart from './components/Cart'
 
 /**
  * COMPONENT
@@ -32,6 +33,7 @@ class Routes extends Component {
         <Route path="/products/:id" component={SingleProduct} />
         <Route exact path="/products" component={ConnectedProductList} />
         <Route path="/users" component={UserList} />
+        <Route path="/cart" component={Cart} />
       </Switch>
     )
   }
