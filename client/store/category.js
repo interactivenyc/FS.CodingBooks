@@ -28,7 +28,7 @@ const selectOneCategory = category => ({type: SELECT_CATEGORY, category})
 
 export const fetchAllCategories = () => async dispatch => {
   try {
-    const res = await axios.get('api/products/categories')
+    const res = await axios.get('/api/products/categories')
     dispatch(getCategory(res.data))
   } catch (err) {
     console.error(err)
@@ -37,7 +37,7 @@ export const fetchAllCategories = () => async dispatch => {
 
 export const selectCategory = categoryId => async dispatch => {
   try {
-    const res = await axios.get(`api/products/categories/${categoryId}`)
+    const res = await axios.get(`/api/products/categories/${categoryId}`)
     dispatch(selectOneCategory(res.data))
   } catch (err) {
     console.error(err)

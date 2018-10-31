@@ -9,6 +9,7 @@ import {me} from './store'
 import {fetchAllUsers} from './store/allUsers'
 import {fetchAllProducts} from './store/product'
 import {fetchAllCategories} from './store/category'
+import SingleProduct from './components/SingleProduct'
 
 /**
  * COMPONENT
@@ -28,7 +29,8 @@ class Routes extends Component {
         <Route path="/home" component={UserHome} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/products" component={ConnectedProductList} />
+        <Route path="/products/:id" component={SingleProduct} />
+        <Route exact path="/products" component={ConnectedProductList} />
         <Route path="/users" component={UserList} />
       </Switch>
     )
