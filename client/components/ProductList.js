@@ -13,7 +13,6 @@ class ProductList extends React.Component {
 
     return (
       <div>
-        {console.log(this.props.selectedCategory)}
         <NavDropdown title="Select a category to filter" id="nav-dropdown">
           {allCategoriesArr.map(category => (
             <MenuItem
@@ -31,12 +30,12 @@ class ProductList extends React.Component {
               return (
                 <tr key={product.id}>
                   <td>
-                    <Link to={`/product/${product.id}`}>
+                    <Link to={`/products/${product.id}`}>
                       <img src={product.photo} />
                     </Link>
                   </td>
                   <td>
-                    <Link to={`/product/${product.id}`}>
+                    <Link to={`/products/${product.id}`}>
                       <div>{product.title}</div>
                     </Link>
                     <div>Price: ${product.price}</div>
