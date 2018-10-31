@@ -4,17 +4,17 @@ import {Link} from 'react-router-dom'
 function SingleProductInList(props) {
   const {photo, id, title, price} = props
   return (
-    <tr>
+    <tr className="item">
       <td>
         <Link to={`/products/${id}`}>
           <img src={photo} />
         </Link>
       </td>
-      <td>
+      <td className="content">
         <Link to={`/products/${id}`}>
-          <div>{title}</div>
+          <h3>{title}</h3>
         </Link>
-        <div>Price: ${price}</div>
+        Price: ${price}
       </td>
     </tr>
   )
