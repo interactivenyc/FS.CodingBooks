@@ -15,18 +15,24 @@ async function seed() {
       address: '51 Cody Drive, Pug Street NY 00000',
       phone: '123-456-7891',
       image: 'https://odadee.net/themes/default/assets/images/default.jpg',
-      email: 'cody@email.com', 
-      password: '123'}),
+      email: 'cody@email.com',
+      password: '123'
+    }),
     User.create({
       lastName: 'Cat',
       firstName: 'Murphy',
       address: '52 Murff Drive, Cat Street NY 00000',
       phone: '987-675-4321',
-      email: 'murphy@email.com', 
-      password: '123'})
+      email: 'murphy@email.com',
+      password: '123'
+    })
   ])
 
-  const category = await Promise.all([Category.create({name: 'Javascript'})])
+  const category = await Promise.all([
+    Category.create({name: 'Javascript'}),
+    Category.create({name: 'Algorithm'}),
+    Category.create({name: 'React'})
+  ])
 
   const product = await Promise.all([
     Product.create({
@@ -42,13 +48,22 @@ async function seed() {
         "Eloquent JavaScript dives into this flourishing language and teaches you to write code that's beautiful and effective. By immersing you in example code and encouraging experimentation right from the start, the author quickly gives you the tools you need to build your own programs.",
       price: 17.99,
       inventoryQuantity: 20,
-      photo: 'Eloquent Javascript.jpg'
+      photo: '/Eloquent Javascript.jpg'
+    }),
+    Product.create({
+      title: 'Algorithms Edition 4',
+      description:
+        'This fourth edition of Robert Sedgewick and Kevin Wayne’s Algorithms is the leading textbook on algorithms today and is widely used in colleges and universities worldwide. This book surveys the most important computer algorithms currently in use and provides a full treatment of data structures and algorithms for sorting, searching, graph processing, and string processing--including fifty algorithms every programmer should know. In this edition, new Java implementations are written in an accessible modular programming style, where all of the code is exposed to the reader and ready to use.',
+      price: 85.49,
+      inventoryQuantity: 20,
+      photo: '/Algorithms.jpg'
     })
   ])
 
   const association = await Promise.all([
     CategoryAssociations.create({productId: 1, categoryId: 1}),
-    CategoryAssociations.create({productId: 2, categoryId: 1})
+    CategoryAssociations.create({productId: 2, categoryId: 1}),
+    CategoryAssociations.create({productId: 3, categoryId: 2})
   ])
 
   console.log(`seeded ${users.length} users`)
