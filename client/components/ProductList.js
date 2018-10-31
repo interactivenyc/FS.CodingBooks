@@ -1,15 +1,14 @@
 import React from 'react'
-import axios from 'axios'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {NavDropdown, MenuItem} from 'react-bootstrap'
 import {selectCategory} from '../store/category'
+import SingleProductInList from './SingleProductInList'
 
 class ProductList extends React.Component {
   render() {
     const allProductsArr = this.props.product
     const allCategoriesArr = this.props.allCategory
-    const selectedCategory = this.props.selectedCategory
 
     return (
       <div>
@@ -28,19 +27,13 @@ class ProductList extends React.Component {
           <tbody>
             {allProductsArr.map(product => {
               return (
-                <tr key={product.id}>
-                  <td>
-                    <Link to={`/products/${product.id}`}>
-                      <img src={product.photo} />
-                    </Link>
-                  </td>
-                  <td>
-                    <Link to={`/products/${product.id}`}>
-                      <div>{product.title}</div>
-                    </Link>
-                    <div>Price: ${product.price}</div>
-                  </td>
-                </tr>
+                <SingleProductInList
+                  title={product.title}
+                  id={product.id}
+                  photo={product.photo}
+                  price={product.price}
+                  key={product.id}
+                />
               )
             })}
           </tbody>
