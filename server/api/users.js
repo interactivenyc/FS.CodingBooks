@@ -3,9 +3,22 @@ const {User} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
-  const isAdmin = req.user.dataValues.isAdmin || false
+  let isAdmin = false
 
-  console.log('[API] GET USERS req.user isAdmin', isAdmin, req.user.dataValues)
+  try {
+    if (req.user) {
+      isAdmin = req.user.dataValues.isAdmin || false
+      console.log(
+        '[API] GET USERS req.user isAdmin',
+        isAdmin,
+        req.user.dataValues
+      )
+    } else {
+      console.log("req.user doesn't exist")
+    }
+  } catch (error) {
+    console.error(error)
+  }
 
   try {
     if (isAdmin) {
