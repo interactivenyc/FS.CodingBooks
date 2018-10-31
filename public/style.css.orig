@@ -1,0 +1,59 @@
+* {
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+#app {
+  background-color: rgb(229, 244, 252);
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  display: block;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+
+form div {
+  margin: 0px;
+  display: inline-block;
+<<<<<<< HEAD
+}
+=======
+}
+
+.navHeader:first-child {
+  margin: 12px;
+}
+
+.bgBlue {
+}
+
+.ui.secondary.menu.bgBlue.rightMenu {
+  margin-right: 10px;
+  border-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.ui.secondary.menu.bgBlue {
+  background-color: rgb(191, 217, 255);
+  border-bottom: 1px rgb(15, 18, 31) solid;
+  margin-bottom: 10px;
+  /* margin: 20px; */
+}
+
+.ui.secondary.menu .item.rollover:hover {
+  /* color: orange; */
+  background-color: rgb(229, 244, 252);
+}
+>>>>>>> master
