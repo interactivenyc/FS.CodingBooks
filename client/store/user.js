@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const GET_USER_CART = 'GET_USER_CART'
 
 /**
  * INITIAL STATE
@@ -17,14 +18,25 @@ const defaultUser = {}
  */
 const getUser = user => ({type: GET_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
+const getUserCart = cart => ({type: GET_USER_CART, cart})
 
 /**
  * THUNK CREATORS
  */
+export const fetchUserCart = cartId => async dispatch => {
+  try {
+    const cart = await axios.get(`/api/carts/${cartId}`)
+    dispatch(getUserCart(cart.data))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || defaultUser))
+    if (res.data) dispatch(fetchUserCart(res.data.cartId))
   } catch (err) {
     console.error(err)
   }
@@ -39,8 +51,6 @@ export const auth = (
 ) => async dispatch => {
   let res
   try {
-    console.log('[user.js] auth method', method)
-
     if (method === 'signup') {
       res = await axios.post(`/auth/${method}`, {
         email,
@@ -57,6 +67,7 @@ export const auth = (
 
   try {
     dispatch(getUser(res.data))
+    dispatch(fetchUserCart(res.data.cartId))
     history.push('/home')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
@@ -82,6 +93,8 @@ export default function(state = defaultUser, action) {
       return action.user
     case REMOVE_USER:
       return defaultUser
+    case GET_USER_CART:
+      return {...state, cart: action.cart}
     default:
       return state
   }

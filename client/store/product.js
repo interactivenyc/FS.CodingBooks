@@ -9,11 +9,14 @@ const FILTER_PRODUCT = 'FILTER_PRODUCT'
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 
 /**
+<<<<<<< HEAD
+=======
  * INITIAL STATE
  */
 const defaultProduct = []
 
 /**
+>>>>>>> master
  * ACTION CREATORS
  */
 const getProduct = product => ({type: GET_PRODUCT, product})
@@ -34,7 +37,7 @@ export const fetchAllProducts = () => async dispatch => {
 
 export const filterProductsByCategory = id => async dispatch => {
   try {
-    const res = await axios.get('api/products/associations')
+    const res = await axios.get('/api/products/associations')
     const associations = res.data
     // for (let association of associations) {
     // if (association.categoryId )
@@ -55,7 +58,7 @@ export const filterProductsByCategory = id => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultProduct, action) {
+export default function(state = [], action) {
   switch (action.type) {
     case GET_PRODUCT:
       return [...action.product]
