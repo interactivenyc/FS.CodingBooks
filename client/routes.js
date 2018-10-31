@@ -6,7 +6,8 @@ import {Login, Signup, UserHome} from './components'
 import ConnectedProductList from './components/ProductList'
 import UserList from './components/UserList'
 import {me} from './store'
-import { fetchAllUsers } from './store/allUsers';
+import {fetchAllUsers} from './store/allUsers'
+import {fetchAllProducts} from './store/product'
 
 /**
  * COMPONENT
@@ -27,7 +28,7 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/products" component={ConnectedProductList} />
-        <Route path='/users' component={UserList} />
+        <Route path="/users" component={UserList} />
       </Switch>
     )
   }
@@ -50,6 +51,7 @@ const mapDispatch = dispatch => {
     loadInitialData() {
       dispatch(me())
       dispatch(fetchAllUsers())
+      dispatch(fetchAllProducts())
     }
   }
 }

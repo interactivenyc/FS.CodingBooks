@@ -2,22 +2,21 @@ import React from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {allProducts} from '../store/product'
 
 class ProductList extends React.Component {
-  componentDidMount() {
-    this.props.fetchAllProducts()
-  }
+  // componentDidMount() {
+  //   this.props.fetchAllProducts()
+  // }
 
   render() {
     const allProductsArr = this.props.product
     return (
       <div>
-        {allProductsArr.map(product => {
-          return (
-            <table>
-              <tbody>
-                <tr>
+        <table>
+          <tbody>
+            {allProductsArr.map(product => {
+              return (
+                <tr key={product.id}>
                   <td>
                     <Link to={`/product/${product.id}`}>
                       <img src={product.photo} />
@@ -30,10 +29,10 @@ class ProductList extends React.Component {
                     <div>Price: {product.price}</div>
                   </td>
                 </tr>
-              </tbody>
-            </table>
-          )
-        })}
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     )
   }
@@ -43,14 +42,12 @@ const mapStateToProps = state => ({
   product: state.product
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchAllProducts: () => dispatch(allProducts())
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchAllProducts: () => dispatch(allProducts())
+//   }
+// }
 
-const ConnectedProductList = connect(mapStateToProps, mapDispatchToProps)(
-  ProductList
-)
+const ConnectedProductList = connect(mapStateToProps, null)(ProductList)
 
 export default ConnectedProductList
