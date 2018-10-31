@@ -12,7 +12,7 @@ const AuthForm = props => {
 
   return (
     <div>
-      <div className="ui middle aligned center aligned grid">
+      <div className="ui middle aligned center aligned very padded grid">
         <div className="column">
           <h2 className="ui image header">
             <div className="content">Log-in to your account</div>
@@ -46,11 +46,21 @@ const AuthForm = props => {
               >
                 {displayName}
               </button>
+              <hr />
+              <a
+                target="_self"
+                href="/auth/google"
+                className="ui fluid large teal submit button"
+              >
+                <i className="fa fa-google" />
+                <span>{displayName} with Google</span>
+              </a>
             </div>
-
-            <div className="ui error message" />
-            {error && error.response && <div> {error.response.data} </div>}
           </form>
+          {error &&
+            error.response && (
+              <div className="ui error message"> {error.response.data} </div>
+            )}
 
           {displayName === 'Login' ? (
             <div className="ui message">
@@ -61,10 +71,6 @@ const AuthForm = props => {
               Existing User? <Link to="/login">Log In</Link>
             </div>
           )}
-
-          <div>
-            <a href="/auth/google">{displayName} with Google</a>
-          </div>
         </div>
       </div>
     </div>

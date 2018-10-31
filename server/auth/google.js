@@ -32,13 +32,22 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
     (token, refreshToken, profile, done) => {
       const googleId = profile.id
       const name = profile.displayName
+      const firstName = profile.name.givenName
+      const lastName = profile.name.familyName
       const email = profile.emails[0].value
+
+      console.log('GoogleStrategy profile:', name, firstName, lastName)
+      // console.log('GoogleStrategy profile:', profile)
 
       User.findOrCreate({
         where: {googleId},
-        defaults: {name, email}
+        defaults: {name, email, firstName, lastName}
       })
-        .then(([user]) => done(null, user))
+        .then(([user]) => {
+          console.log('User.findOrCreate', user.firstName, user.lastName)
+
+          done(null, user)
+        })
         .catch(done)
     }
   )
