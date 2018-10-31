@@ -47,19 +47,10 @@ const AuthForm = props => {
                 {displayName}
               </button>
               <hr />
-
-              {/* <Link
-                className="ui fluid large teal submit button"
-                to="/auth/google"
-                type="button"
-              >
-                {displayName} with Google
-              </Link> */}
-
               <a
                 target="_self"
                 href="/auth/google"
-                className="btn btn-social btn-google"
+                className="ui fluid large teal submit button"
               >
                 <i className="fa fa-google" />
                 <span>{displayName} with Google</span>
