@@ -6,8 +6,7 @@ import {Login, Signup, UserHome} from './components'
 import ConnectedProductList from './components/ProductList'
 import UserList from './components/UserList'
 import {me} from './store'
-import { fetchAllUsers } from './store/allUsers';
-import { allProducts } from './store/product';
+import {fetchAllUsers} from './store/allUsers'
 import {fetchAllProducts} from './store/product'
 import {fetchAllCategories} from './store/category'
 
@@ -55,7 +54,6 @@ const mapDispatch = dispatch => {
       dispatch(fetchAllUsers())
       dispatch(fetchAllProducts())
       dispatch(fetchAllCategories())
-      dispatch(allProducts())
     }
   }
 }

@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const {Product, Category} = require('../db/models')
+const db = require('../db')
+const CategoryAssociations = db.model('category_associations')
 module.exports = router
 
 // api/products
@@ -17,6 +19,15 @@ router.get('/categories', async (req, res, next) => {
   try {
     const allCategory = await Category.findAll()
     res.json(allCategory)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/associations', async (req, res, next) => {
+  try {
+    const associations = await CategoryAssociations.findAll()
+    res.json(associations)
   } catch (err) {
     next(err)
   }
