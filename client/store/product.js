@@ -21,7 +21,7 @@ const getProduct = product => ({type: GET_PRODUCT, product})
 /**
  * THUNK CREATORS
  */
-export const allProducts = () => async dispatch => {
+export const fetchAllProducts = () => async dispatch => {
   try {
     const res = await axios.get('/api/products')
     dispatch(getProduct(res.data))

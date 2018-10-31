@@ -2,22 +2,34 @@ import React from 'react'
 import axios from 'axios'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {allProducts} from '../store/product'
+import {NavDropdown, MenuItem} from 'react-bootstrap'
+import {selectCategory} from '../store/category'
 
 class ProductList extends React.Component {
-  componentDidMount() {
-    this.props.fetchAllProducts()
-  }
-
   render() {
     const allProductsArr = this.props.product
+    const allCategoriesArr = this.props.allCategory
+    const selectedCategory = this.props.selectedCategory
+
     return (
       <div>
-        {allProductsArr.map(product => {
-          return (
-            <table>
-              <tbody>
-                <tr>
+        {console.log(this.props.selectedCategory)}
+        <NavDropdown title="Select a category to filter" id="nav-dropdown">
+          {allCategoriesArr.map(category => (
+            <MenuItem
+              key={category.id}
+              onSelect={() => this.props.selectCategory(category.id)}
+            >
+              {category.name}
+            </MenuItem>
+          ))}
+        </NavDropdown>
+        <br />
+        <table>
+          <tbody>
+            {allProductsArr.map(product => {
+              return (
+                <tr key={product.id}>
                   <td>
                     <Link to={`/product/${product.id}`}>
                       <img src={product.photo} />
@@ -25,27 +37,29 @@ class ProductList extends React.Component {
                   </td>
                   <td>
                     <Link to={`/product/${product.id}`}>
-                      <div>Title: {product.title}</div>
+                      <div>{product.title}</div>
                     </Link>
-                    <div>Price: {product.price}</div>
+                    <div>Price: ${product.price}</div>
                   </td>
                 </tr>
-              </tbody>
-            </table>
-          )
-        })}
+              )
+            })}
+          </tbody>
+        </table>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  product: state.product
+  product: state.product,
+  allCategory: state.category.allCategories,
+  selectedCategory: state.category.selectedCategory
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchAllProducts: () => dispatch(allProducts())
+    selectCategory: id => dispatch(selectCategory(id))
   }
 }
 
