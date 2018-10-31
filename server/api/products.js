@@ -1,7 +1,6 @@
 const router = require('express').Router()
-const {Product, Category} = require('../db/models')
-const db = require('../db')
-const CategoryAssociations = db.model('category_associations')
+const {Product, Category, CategoryAssociations} = require('../db/models')
+
 module.exports = router
 
 // api/products

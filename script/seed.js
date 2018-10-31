@@ -14,7 +14,16 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const cart = await Cart.create({})
+  const cart = await Promise.all([
+    Cart.create(),
+    Cart.create(),
+    Cart.create(),
+    Cart.create(),
+    Cart.create(),
+    Cart.create(),
+    Cart.create(),
+    Cart.create()
+  ])
 
   const users = await Promise.all([
     User.create({
@@ -35,7 +44,8 @@ async function seed() {
       image:
         'https://images.onlinelabels.com/images/clip-art/dagobert83/dagobert83_female_user_icon.png',
       email: 'murphfy@email.com',
-      password: '123'
+      password: '123',
+      cartId: 2
     }),
     User.create({
       lastName: 'Cat',
@@ -43,7 +53,8 @@ async function seed() {
       address: '52 Murff Drive, Cat Street NY 00000',
       phone: '987-675-4321',
       email: 'murphey@email.com',
-      password: '123'
+      password: '123',
+      cartId: 3
     }),
     User.create({
       lastName: 'Cat',
@@ -51,7 +62,8 @@ async function seed() {
       address: '52 Murff Drive, Cat Street NY 00000',
       phone: '987-675-4321',
       email: 'murphay@email.com',
-      password: '123'
+      password: '123',
+      cartId: 4
     }),
     User.create({
       lastName: 'Cat',
@@ -59,7 +71,8 @@ async function seed() {
       address: '52 Murff Drive, Cat Street NY 00000',
       phone: '987-675-4321',
       email: 'murphcy@email.com',
-      password: '123'
+      password: '123',
+      cartId: 5
     }),
     User.create({
       lastName: 'Cat',
@@ -67,7 +80,8 @@ async function seed() {
       address: '52 Murff Drive, Cat Street NY 00000',
       phone: '987-675-4321',
       email: 'murphjy@email.com',
-      password: '123'
+      password: '123',
+      cartId: 6
     }),
     User.create({
       lastName: 'Cat',
@@ -75,7 +89,8 @@ async function seed() {
       address: '52 Murff Drive, Cat Street NY 00000',
       phone: '987-675-4321',
       email: 'muttrphy@email.com',
-      password: '123'
+      password: '123',
+      cartId: 7
     }),
     User.create({
       lastName: 'Cat',
@@ -83,7 +98,8 @@ async function seed() {
       address: '52 Murff Drive, Cat Street NY 00000',
       phone: '987-675-4321',
       email: 'murphooy@email.com',
-      password: '123'
+      password: '123',
+      cartId: 8
     })
   ])
 
