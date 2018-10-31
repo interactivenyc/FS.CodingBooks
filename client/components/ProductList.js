@@ -9,7 +9,6 @@ class ProductList extends React.Component {
   render() {
     const allProductsArr = this.props.product
     const allCategoriesArr = this.props.allCategory
-    console.log(`PRODUCT ARR HERE: `, allProductsArr)
 
     return (
       <div>
@@ -24,21 +23,22 @@ class ProductList extends React.Component {
           ))}
         </NavDropdown>
         <div className="ui container" id="narrow" style={{margin: '20px'}}>
-          <div className="ui message center aligned grid">
+          <div className="ui message left aligned grid">
             <div className="ui list">
               <table>
                 <tbody>
-                  {allProductsArr.map(product => {
-                    return (
-                      <SingleProductInList
-                        title={product.title}
-                        id={product.id}
-                        photo={product.photo}
-                        price={product.price}
-                        key={product.id}
-                      />
-                    )
-                  })}
+                  {allProductsArr[0] &&
+                    allProductsArr.map(product => {
+                      return (
+                        <SingleProductInList
+                          title={product.title}
+                          id={product.id}
+                          photo={product.photo}
+                          price={product.price}
+                          key={product.id}
+                        />
+                      )
+                    })}
                 </tbody>
               </table>
             </div>

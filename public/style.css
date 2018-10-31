@@ -21,7 +21,7 @@ form div {
 }
 
 .item {
-  margin: auto 50px 50px 50px;
+  margin: 50px 50px 50px 50px;
   display: flex
 }
 
@@ -32,3 +32,5 @@ form div {
 .content {
   margin: auto 50px 50px 50px
 }
+
+div.td { align-self: center; }
