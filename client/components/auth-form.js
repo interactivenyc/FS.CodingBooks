@@ -10,6 +10,8 @@ import {Link} from 'react-router-dom'
 const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
+  console.log('[ AuthForm ] render', name)
+
   return (
     <div>
       <div className="ui middle aligned center aligned very padded grid">
@@ -40,6 +42,35 @@ const AuthForm = props => {
                   />
                 </div>
               </div>
+
+              {name === 'signup' ? (
+                <div>
+                  <div className="field">
+                    <div className="ui left icon input">
+                      <i className="user icon" />
+
+                      <input
+                        type="text"
+                        name="firstName"
+                        placeholder="First Name"
+                      />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <div className="ui left icon input">
+                      <i className="lock icon" />
+                      <input
+                        type="text"
+                        name="lastName"
+                        placeholder="Last Name"
+                      />
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div />
+              )}
+
               <button
                 type="submit"
                 className="ui fluid large teal submit button"
@@ -107,7 +138,16 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+
+      console.log('[auth-form] submit', formName)
+
+      if (formName === 'signup') {
+        const firstName = evt.target.firstName.value
+        const lastName = evt.target.lastName.value
+        dispatch(auth(email, password, formName, firstName, lastName))
+      } else {
+        dispatch(auth(email, password, formName))
+      }
     }
   }
 }
