@@ -39,8 +39,6 @@ export const auth = (
 ) => async dispatch => {
   let res
   try {
-    console.log('[user.js] auth method', method)
-
     if (method === 'signup') {
       res = await axios.post(`/auth/${method}`, {
         email,

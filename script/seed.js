@@ -1,12 +1,20 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Category, Product} = require('../server/db/models')
-const CategoryAssociations = db.model('category_associations')
+const {
+  User,
+  Category,
+  Product,
+  Cart,
+  CategoryAssociations,
+  CartProducts
+} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
+
+  const cart = await Cart.create({})
 
   const users = await Promise.all([
     User.create({
@@ -16,7 +24,8 @@ async function seed() {
       phone: '123-456-7891',
       image: 'https://odadee.net/themes/default/assets/images/default.jpg',
       email: 'cody@email.com',
-      password: '123'
+      password: '123',
+      cartId: 1
     }),
     User.create({
       lastName: 'Cat',
@@ -115,6 +124,12 @@ async function seed() {
     CategoryAssociations.create({productId: 1, categoryId: 1}),
     CategoryAssociations.create({productId: 2, categoryId: 1}),
     CategoryAssociations.create({productId: 3, categoryId: 2})
+  ])
+
+  const cartAssociations = await Promise.all([
+    CartProducts.create({productId: 1, cartId: 1}),
+    CartProducts.create({productId: 2, cartId: 1}),
+    CartProducts.create({productId: 3, cartId: 1})
   ])
 
   console.log(`seeded ${users.length} users`)
