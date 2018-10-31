@@ -5,31 +5,32 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn, email}) => (
-  <div>
-    <h1>Coding Books</h1>
-
-    <div className="ui secondary pointing menu">
-      <Link to="/home" className="item">
+  <div className="bgBlue">
+    <div className="ui secondary menu bgBlue">
+      <h2 className="navHeader">Coding Books</h2>
+      <Link to="/home" className="item rollover">
         Home
       </Link>
-      <Link to="/products" className="item">
+      <Link to="/products" className="item rollover">
         Product List
       </Link>
-      <div className="right menu">
+      {/* <div className=""> */}
+      <div className="ui secondary menu right bgBlue rightMenu">
         {!isLoggedIn ? (
-          <div>
-            <Link to="/login" className="item">
+          <React.Fragment>
+            <Link to="/login" className="item rollover">
               Log in
             </Link>
-          </div>
+          </React.Fragment>
         ) : (
-          <div>
-            <Link to="#" onClick={handleClick} className="item">
+          <React.Fragment>
+            <Link to="#" onClick={handleClick} className="item rollover">
               Log Out
             </Link>
-          </div>
+          </React.Fragment>
         )}
       </div>
+      {/* </div> */}
     </div>
   </div>
 )
