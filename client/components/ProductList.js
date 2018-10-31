@@ -37,9 +37,9 @@ class ProductList extends React.Component {
                   </td>
                   <td>
                     <Link to={`/product/${product.id}`}>
-                      <div>Title: {product.title}</div>
+                      <div>{product.title}</div>
                     </Link>
-                    <div>Price: {product.price}</div>
+                    <div>Price: ${product.price}</div>
                   </td>
                 </tr>
               )
