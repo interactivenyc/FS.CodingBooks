@@ -10,7 +10,10 @@ const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 /**
  * INITIAL STATE
  */
-const defaultProduct = []
+const defaultProduct = {
+  product: [],
+  category: []
+}
 
 /**
  * ACTION CREATORS
@@ -45,7 +48,7 @@ export const fetchAllProducts = () => async dispatch => {
 export default function(state = defaultProduct, action) {
   switch (action.type) {
     case GET_PRODUCT:
-      return [...action.product]
+      return {...state, product: action.product}
     // case REMOVE_USER:
     //   return defaultUser
     default:

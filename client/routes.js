@@ -8,6 +8,7 @@ import UserList from './components/UserList'
 import {me} from './store'
 import {fetchAllUsers} from './store/allUsers'
 import {fetchAllProducts} from './store/product'
+import {fetchAllCategories} from './store/category'
 
 /**
  * COMPONENT
@@ -52,6 +53,7 @@ const mapDispatch = dispatch => {
       dispatch(me())
       dispatch(fetchAllUsers())
       dispatch(fetchAllProducts())
+      dispatch(fetchAllCategories())
     }
   }
 }
