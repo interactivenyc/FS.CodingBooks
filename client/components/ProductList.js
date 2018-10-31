@@ -22,22 +22,28 @@ class ProductList extends React.Component {
             </MenuItem>
           ))}
         </NavDropdown>
-        <br />
-        <table>
-          <tbody>
-            {allProductsArr.map(product => {
-              return (
-                <SingleProductInList
-                  title={product.title}
-                  id={product.id}
-                  photo={product.photo}
-                  price={product.price}
-                  key={product.id}
-                />
-              )
-            })}
-          </tbody>
-        </table>
+        <div className="ui container" id="narrow" style={{margin: '20px'}}>
+          <div className="ui message left aligned grid">
+            <div className="ui list">
+              <table>
+                <tbody>
+                  {allProductsArr[0] &&
+                    allProductsArr.map(product => {
+                      return (
+                        <SingleProductInList
+                          title={product.title}
+                          id={product.id}
+                          photo={product.photo}
+                          price={product.price}
+                          key={product.id}
+                        />
+                      )
+                    })}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

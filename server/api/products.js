@@ -23,6 +23,7 @@ router.get('/categories', async (req, res, next) => {
   }
 })
 
+// api/products/associations
 router.get('/associations', async (req, res, next) => {
   try {
     const associations = await CategoryAssociations.findAll()

@@ -9,6 +9,14 @@ const FILTER_PRODUCT = 'FILTER_PRODUCT'
 const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 
 /**
+<<<<<<< HEAD
+=======
+ * INITIAL STATE
+ */
+const defaultProduct = []
+
+/**
+>>>>>>> master
  * ACTION CREATORS
  */
 const getProduct = product => ({type: GET_PRODUCT, product})

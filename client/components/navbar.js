@@ -4,36 +4,47 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn, email}) => (
-  <div className="bgBlue">
-    <div className="ui secondary menu bgBlue">
-      <h2 className="navHeader">Coding Books</h2>
-      <Link to="/home" className="item rollover">
-        Home
-      </Link>
-      <Link to="/products" className="item rollover">
-        Product List
-      </Link>
-      {/* <div className=""> */}
-      <div className="ui secondary menu right bgBlue rightMenu">
-        {!isLoggedIn ? (
-          <React.Fragment>
-            <Link to="/login" className="item rollover">
-              Log in
-            </Link>
-          </React.Fragment>
+const Navbar = ({handleClick, isLoggedIn, user}) => {
+  console.log('[NavBar] render user:', user)
+
+  return (
+    <div className="bgBlue">
+      <div className="ui secondary menu bgBlue">
+        <h2 className="navHeader">Coding Books</h2>
+        <Link to="/home" className="item rollover">
+          Home
+        </Link>
+        <Link to="/products" className="item rollover">
+          Product List
+        </Link>
+
+        {user.isAdmin ? (
+          <a href="/api/users" className="item rollover">
+            Users
+          </a>
         ) : (
-          <React.Fragment>
-            <Link to="#" onClick={handleClick} className="item rollover">
-              Log Out
-            </Link>
-          </React.Fragment>
+          <React.Fragment />
         )}
+
+        <div className="ui secondary menu right bgBlue rightMenu">
+          {!isLoggedIn ? (
+            <React.Fragment>
+              <Link to="/login" className="item rollover">
+                Log in
+              </Link>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <Link to="#" onClick={handleClick} className="item rollover">
+                Log Out
+              </Link>
+            </React.Fragment>
+          )}
+        </div>
       </div>
-      {/* </div> */}
     </div>
-  </div>
-)
+  )
+}
 
 /**
  * CONTAINER
@@ -41,7 +52,7 @@ const Navbar = ({handleClick, isLoggedIn, email}) => (
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    email: state.user.email
+    user: state.user
   }
 }
 

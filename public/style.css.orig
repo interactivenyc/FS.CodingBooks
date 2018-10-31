@@ -27,26 +27,17 @@ nav a {
 form div {
   margin: 0px;
   display: inline-block;
+<<<<<<< HEAD
+}
+=======
 }
 
-.item {
-  margin: 50px 50px 50px 50px;
-  display: flex
-}
-
-.item img {
-  max-width: 200px;
-}
-
-.content {
-  margin: auto 50px 50px 50px
-}
-
-div.td { align-self: center; }
 .navHeader:first-child {
   margin: 12px;
 }
 
+.bgBlue {
+}
 
 .ui.secondary.menu.bgBlue.rightMenu {
   margin-right: 10px;
@@ -65,3 +56,4 @@ div.td { align-self: center; }
   /* color: orange; */
   background-color: rgb(229, 244, 252);
 }
+>>>>>>> master

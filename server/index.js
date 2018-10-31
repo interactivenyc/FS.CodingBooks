@@ -65,7 +65,7 @@ const createApp = () => {
 
   // SESSION LOGGING
   app.use(function(req, res, next) {
-    if (req.user) console.log('session', req.user.name)
+    if (req.user) console.log('session', req.user.firstName, req.user.lastName)
     next()
   })
 
