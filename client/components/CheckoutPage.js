@@ -2,12 +2,11 @@ import React, {Component} from 'react'
 import {Elements, StripeProvider} from 'react-stripe-elements'
 import CheckoutForm from './CheckoutForm'
 
-class App extends Component {
+class CheckoutPage extends Component {
   render() {
     return (
-      <StripeProvider apiKey="pk_test_tcp6XD3Qq3ORqwTK79pU3SZo">
+      <StripeProvider apiKey="pk_test_5cuklndlVTMNVNJp1kOPk01G">
         <div className="example">
-          <h1>React Stripe Elements Example</h1>
           <Elements>
             <CheckoutForm />
           </Elements>
@@ -17,4 +16,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default CheckoutPage
