@@ -151,6 +151,8 @@ async function seed() {
     CartProducts.create({productId: 3, cartId: 1})
   ])
 
+  await CartProducts.create({productId: 3, cartId: 1})
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${category.length} category`)
   console.log(`seeded ${product.length} product`)

@@ -21,17 +21,12 @@ Category.belongsToMany(Product, {
 })
 Cart.hasOne(User)
 User.belongsTo(Cart)
-Cart.belongsToMany(Product, {
-  through: 'cart_products',
-  foreignKey: 'cartId'
-})
-Product.belongsToMany(Cart, {
-  through: 'cart_products',
-  foreignKey: 'productId'
-})
+
+const CartProducts = db.define('cart_product', {})
+CartProducts.belongsTo(Cart)
+CartProducts.belongsTo(Product)
 
 const CategoryAssociations = db.model('category_associations')
-const CartProducts = db.model('cart_products')
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
