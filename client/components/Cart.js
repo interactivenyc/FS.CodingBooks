@@ -1,57 +1,82 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import CartItem from './CartItem'
 
-export default class Cart extends Component {
-    constructor() {
-        super()
+class Cart extends Component {
+    constructor(props) {
+        super(props)
 
     }
 
     render() {
-        const arr = ['A Title', 'Another Title']
-        return (  
-        <Fragment>
-        <div className="ui container" id="narrow" style={{margin: '20px'}}>
-            <div className="ui items">
-                {arr.map(obj => {
-                    return (
-                    <div className="item">         
+        const cart = this.props.cart || []
+        const products = this.props.products || []
 
-                        <div className="ui small image">
-                            <img src="https://images-na.ssl-images-amazon.com/images/I/515jiKSErDL._SX376_BO1,204,203,200_.jpg"></img>
-                        </div>
+        const masterArr = cart.map(obj => {
+            return products[obj.productId - 1]
+        }) || []
 
-                        <div className="content">
-                            <div className="header">{obj}</div>
-                            <div className="meta">
-                                <span className="price">by This Author</span>
-                                <span className="stay"></span>
-                            </div>
-                            <div className="description">
-                                <p>qty: 1</p>
-                            </div>
-                        </div>
+        const total = masterArr.reduce((acc, elem) => {
+            return acc + (+elem.price)
+        }, 0)
 
-                        <div className="content">
-                            <p>$500.00</p>
-                        </div>
+        return masterArr.length > 0 ? (
+            <div className="ui container" id="narrow" style={{margin: '20px'}}>
+                <table className="ui fixed table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Details</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {masterArr.map(obj => {
+                            return <CartItem key={obj.id} photo={obj.photo} title={obj.title} price={obj.price} />
+                        })}
+                    </tbody>
+                </table>
+                <div className="content">
+                    <p className="ui right aligned header">Current Total: $ {total}</p>
+                    <div className="ui right floated small primary labeled icon button">
+                        <i className="shopping bag icon"></i> Check Out
                     </div>
-                    )            
-                })}
-                <div className="item">
-                <div className="ui small image">
                 </div>
+            </div>
+        ) : (
+            <div className="ui container" id="narrow" style={{margin: '20px'}}>
+                <table className="ui fixed table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Details</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>Alas, your cart is empty</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div className="content">
+                    <p className="ui right aligned header">Total: $ 0.00</p>
+                    <div className="ui right floated small primary labeled icon button">
+                        <i className="shopping bag icon"></i> Check Out
+                    </div>
                 </div>
-                <div className="content">
-                    <p className="ui header centered row">Total: $500.00</p>
-                </div>
-            <div class="ui right floated small primary labeled icon button">
-                <i class="shopping bag icon"></i> Check Out
-            </div>
-            </div>
-            </div>
-        </div>
-        </Fragment>
-        )
+            </div>        
+            )
     }
 }
+
+const mapStateToProps = state => {
+    return ({
+        cart: state.user.cart,
+        products: state.product
+    })
+}
+
+export default connect(mapStateToProps)(Cart)

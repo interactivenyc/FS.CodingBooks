@@ -29,12 +29,18 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
         <div className="ui secondary menu right bgBlue rightMenu">
           {!isLoggedIn ? (
             <React.Fragment>
+              <Link to="/cart" className="item rollover">
+                <i className="shopping cart icon"></i>
+              </Link>
               <Link to="/login" className="item rollover">
                 Log in
               </Link>
             </React.Fragment>
           ) : (
             <React.Fragment>
+              <Link to="/cart" className="item rollover">
+                <i className="shopping cart icon"></i>
+              </Link>
               <Link to="#" onClick={handleClick} className="item rollover">
                 Log Out
               </Link>
