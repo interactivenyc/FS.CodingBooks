@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import CartItem from './CartItem'
 
 class Cart extends Component {
     constructor(props) {
@@ -23,30 +24,15 @@ class Cart extends Component {
             <div className="ui container" id="narrow" style={{margin: '20px'}}>
                 <table className="ui fixed table">
                     <thead>
-                        <tr><th>Name</th>
-                        <th>Details</th>
-                        <th>Price</th>
-                    </tr></thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Details</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
                     <tbody>
                         {masterArr.map(obj => {
-                            return (
-                                    <tr key={obj.id}>
-                                        <td className="ui small image"><img src={obj.photo}></img></td>
-                                            <td>
-                                                <div>
-                                                    <div className="header">{obj.title}</div>
-                                                    <div className="meta">
-                                                        <span className="price">by This Author</span>
-                                                        <span className="stay"></span>
-                                                    </div>
-                                                    <div className="description">
-                                                        <p>qty: 1???</p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        <td>{obj.price}</td>
-                                    </tr>
-                            )
+                            return <CartItem id={obj.id} photo={obj.photo} title={obj.title} price={obj.price} />
                         })}
                     </tbody>
                 </table>
