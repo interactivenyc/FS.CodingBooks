@@ -60,7 +60,10 @@ export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
     dispatch(getUser(res.data || defaultUser))
-    if (res.data) dispatch(fetchUserCart(res.data.cartId))
+    if (res.data) {
+      dispatch(fetchUserCart(res.data.cartId))
+    }
+    localStorage.setItem('cart', JSON.stringify([]))
   } catch (err) {
     console.error(err)
   }

@@ -8,14 +8,31 @@ class Cart extends Component {
   }
 
   render() {
-    const cart = this.props.cart || []
+    const cart =
+      this.props.cart || JSON.parse(localStorage.getItem('cart')) || []
     const products = this.props.products || []
     let keyIndex = 0
 
-    const masterArr =
-      cart.map(obj => {
-        return products[obj.productId - 1]
+    console.log(localStorage.getItem('cart'))
+
+    let masterArr =
+      cart.map(item => {
+        return products.filter(product => product.id === item.productId)[0]
       }) || []
+
+    masterArr = masterArr.reduce(function(rtn, item) {
+      if (rtn.filter(n => n.id === item.id).length > 0) {
+        rtn.forEach((prod, idx) => {
+          if (prod.id === item.id) {
+            rtn[idx].quantity++
+          }
+        })
+      } else {
+        item.quantity = 1
+        rtn.push(item)
+      }
+      return rtn
+    }, [])
 
     const total = masterArr.reduce((acc, elem) => {
       return acc + +elem.price
@@ -36,6 +53,7 @@ class Cart extends Component {
                         photo={obj.photo}
                         title={obj.title}
                         price={obj.price}
+                        quantity={obj.quantity}
                       />
                     </td>
                   </React.Fragment>
@@ -45,7 +63,9 @@ class Cart extends Component {
           </tbody>
         </table>
         <div className="content">
-          <p className="ui right aligned header">Current Total: $ {total}</p>
+          <p className="ui right aligned header">
+            Current Total: $ {total.toFixed(2)}
+          </p>
           <div className="ui right floated small primary labeled icon button">
             <i className="shopping bag icon" /> Check Out
           </div>

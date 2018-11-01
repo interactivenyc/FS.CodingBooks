@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {addToCart, removeFromCart} from '../store/user'
 
 function SingleProductInList(props) {
-  const {photo, productId, title, price, context} = props
+  const {photo, productId, title, price, context, quantity} = props
 
   return (
     <div className="item">
@@ -21,13 +21,19 @@ function SingleProductInList(props) {
         </div>
         <div className="my-button">
           {context === 'cart' ? (
-            <button
-              type="button"
-              onClick={() => props.removeFromCart(props.productId)}
-              className="ui green button"
-            >
-              Remove from Cart
-            </button>
+            <React.Fragment>
+              <div className="description">
+                <p>Quantity: {quantity}</p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => props.removeFromCart(props.productId)}
+                className="ui green button"
+              >
+                Remove from Cart
+              </button>
+            </React.Fragment>
           ) : (
             <button
               type="button"
