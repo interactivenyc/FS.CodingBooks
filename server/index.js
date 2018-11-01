@@ -10,6 +10,13 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+
+//Stripe:
+
+const keyPublishable = process.env.PUBLISHABLE_KEY
+const keySecret = process.env.SECRET_KEY
+const stripe = require('stripe')(keySecret)
+
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -44,6 +51,9 @@ const createApp = () => {
   // logging middleware
   app.use(morgan('dev'))
 
+  // Stripe:
+  app.set('view engine', 'pug')
+
   // body parsing middleware
   app.use(express.json())
   app.use(express.urlencoded({extended: true}))
@@ -72,6 +82,30 @@ const createApp = () => {
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
+
+  app.get('/payment', (req, res) => res.render('index.pug', {keyPublishable}))
+
+  //Stripe:
+  app.post('/payment/charge', (req, res) => {
+    let amount = 500
+
+    stripe.customers
+      .create({
+        email: req.body.stripeEmail,
+        source: req.body.stripeToken
+      })
+      .then(customer =>
+        stripe.charges.create({
+          amount,
+          description: 'Sample Charge',
+          currency: 'usd',
+          customer: customer.id
+        })
+      )
+      .then(charge => res.render('charge.pug'))
+  })
+
+  app.listen(4567)
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
