@@ -30,7 +30,6 @@ if (process.env.NODE_ENV === 'test') {
 if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 //Stripe: Make sure to remove secret key (starts with sk) before deploy
-
 const stripe = require('stripe')('sk_test_021nwV6qO0W7sFVPhbL6WXgB')
 
 // passport registration
@@ -81,14 +80,12 @@ const createApp = () => {
   //Stripe:
   app.post('/charge', async (req, res) => {
     try {
-      console.log(`REQ.BODY HERE: `, req.body)
       let {status} = await stripe.charges.create({
-        amount: 2000,
+        amount: 2000, //to-update
         currency: 'usd',
-        description: 'An example charge',
+        description: 'An example charge', //to-update
         source: req.body.token
       })
-      console.log(`THIS IS THE STATUS!!: `, status)
       res.json({status})
     } catch (err) {
       console.log(err)

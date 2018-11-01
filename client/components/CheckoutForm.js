@@ -21,9 +21,16 @@ class CheckoutForm extends Component {
   render() {
     return (
       <div className="checkout">
-        <p>Would you like to complete the purchase?</p>
-        <CardElement />
-        <button onClick={this.submit}>Send</button>
+        <h2>
+          Please provide your credit card information below to complete your
+          order
+        </h2>
+        <div>
+          <CardElement />
+        </div>
+        <a className="ui huge green button" onClick={this.submit}>
+          Complete purchase
+        </a>
       </div>
     )
   }
