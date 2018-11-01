@@ -10,6 +10,7 @@ class Cart extends Component {
   render() {
     const cart = this.props.cart || []
     const products = this.props.products || []
+    let keyIndex = 0
 
     const masterArr =
       cart.map(obj => {
@@ -23,29 +24,23 @@ class Cart extends Component {
     return masterArr.length > 0 ? (
       <div className="ui container" id="narrow" style={{margin: '20px'}}>
         <table className="ui fixed table">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Details</th>
-              <th>Price</th>
-            </tr>
-          </thead>
           <tbody>
             <tr>
-              <td>
-                {masterArr.map(obj => {
-                  return (
-                    <SingleProductInList
-                      key={obj.id}
-                      context="cart"
-                      id={obj.id}
-                      photo={obj.photo}
-                      title={obj.title}
-                      price={obj.price}
-                    />
-                  )
-                })}
-              </td>
+              {masterArr.map(obj => {
+                return (
+                  <React.Fragment key={keyIndex++}>
+                    <td>
+                      <SingleProductInList
+                        context="cart"
+                        productId={obj.id}
+                        photo={obj.photo}
+                        title={obj.title}
+                        price={obj.price}
+                      />
+                    </td>
+                  </React.Fragment>
+                )
+              })}
             </tr>
           </tbody>
         </table>

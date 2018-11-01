@@ -37,21 +37,20 @@ export const fetchUserCart = cartId => async dispatch => {
 }
 
 export const addToCart = productId => async dispatch => {
-  console.log('[user] addToCart', productId)
-
   try {
-    const product = await axios.get(`/api/carts/add/${productId}`)
-    dispatch(addedToCart(product))
+    const product = await axios.post(`/api/carts/add/${productId}`)
+    dispatch(addedToCart(product.data))
   } catch (err) {
     console.error(err)
   }
 }
 
 export const removeFromCart = productId => async dispatch => {
-  console.log('[user] removeFromCart', productId)
+  console.log('[user] removeFromCart', productId, defaultUser.cart)
   try {
-    const product = await axios.get(`/api/carts/remove/${productId}`)
-    dispatch(removedFromCart(product))
+    const product = await axios.delete(`/api/carts/remove/${productId}`)
+    console.log('[user] dispatch removedFromCart', product.data)
+    dispatch(removedFromCart(product.data))
   } catch (err) {
     console.error(err)
   }
@@ -120,6 +119,25 @@ export default function(state = defaultUser, action) {
       return defaultUser
     case GET_USER_CART:
       return {...state, cart: action.cart}
+
+    case ADDED_ITEM_TO_CART:
+      console.log('ADDED_ITEM_TO_CART', action, state.cart)
+
+      return {...state, cart: [...state.cart, action.product]}
+    case REMOVED_ITEM_FROM_CART:
+      console.log('REMOVED_ITEM_FROM_CART before', state.cart.length)
+      for (let i = 0; i < state.cart.length; i++) {
+        if (state.cart[i].productId === action.product.productId) {
+          console.log('remove item', action.product.productId)
+
+          state.cart.splice(i, 1)
+          break
+        }
+      }
+      console.log('REMOVED_ITEM_FROM_CART after', state.cart.length)
+
+      return {...state, cart: [...state.cart]}
+
     default:
       return state
   }

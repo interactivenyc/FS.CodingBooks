@@ -9,6 +9,7 @@ class ProductList extends React.Component {
   render() {
     const allProductsArr = this.props.product
     const allCategoriesArr = this.props.allCategory
+    let keyIndex = 0
 
     return (
       <div>
@@ -31,10 +32,10 @@ class ProductList extends React.Component {
                     <SingleProductInList
                       title={product.title}
                       context="product-list"
-                      id={product.id}
+                      productId={product.id}
                       photo={product.photo}
                       price={product.price}
-                      key={product.id}
+                      key={keyIndex++}
                     />
                   )
                 })}

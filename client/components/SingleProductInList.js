@@ -4,26 +4,26 @@ import {connect} from 'react-redux'
 import {addToCart, removeFromCart} from '../store/user'
 
 function SingleProductInList(props) {
-  const {photo, id, title, price, context} = props
-  console.log('[SingleProductInList] context:', context)
+  const {photo, productId, title, price, context} = props
 
   return (
     <div className="item">
-      <Link to={`/products/${id}`}>
+      <Link to={`/products/${productId}`}>
         <img src={photo} className="ui left floated image" />
       </Link>
       <div className="right-col">
         <div className="productInfo">
-          <Link to={`/products/${id}`}>
+          <Link to={`/products/${productId}`}>
             <h2>{title}</h2>
           </Link>
           <h3>Price: ${price}</h3>
+          <h3>productId: {productId}</h3>
         </div>
         <div className="my-button">
           {context === 'cart' ? (
             <button
               type="button"
-              onClick={() => props.removeFromCart(props.id)}
+              onClick={() => props.removeFromCart(props.productId)}
               className="ui green button"
             >
               Remove from Cart
@@ -31,7 +31,7 @@ function SingleProductInList(props) {
           ) : (
             <button
               type="button"
-              onClick={() => props.addToCart(props.id)}
+              onClick={() => props.addToCart(props.productId)}
               className="ui green button"
             >
               Add to Cart
@@ -45,8 +45,8 @@ function SingleProductInList(props) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addToCart: id => dispatch(addToCart(id)),
-    removeFromCart: id => dispatch(removeFromCart(id))
+    addToCart: productId => dispatch(addToCart(productId)),
+    removeFromCart: productId => dispatch(removeFromCart(productId))
   }
 }
 
