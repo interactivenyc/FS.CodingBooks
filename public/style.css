@@ -39,8 +39,21 @@ form div {
   max-width: 200px;
 }
 
-.content {
-  margin: 50px
+.right-col {
+  display: flex;
+  flex-direction:column;
+  padding: 50px
+}
+
+.productInfo {
+  flex-grow: 1;
+}
+
+.ui.huge.green.button {
+  display: flex;
+  max-width: 45%;
+  max-height: 30%;
+  margin: 10% 0% 0% 0%
 }
 
 td .content {

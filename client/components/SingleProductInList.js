@@ -6,14 +6,18 @@ function SingleProductInList(props) {
   return (
     <div className="item">
       <Link to={`/products/${id}`}>
-        <img src={photo} class="ui left floated image" />
+        <img src={photo} className="ui left floated image" />
       </Link>
-      <div className="content">
-        <Link to={`/products/${id}`}>
-          <h2>{title}</h2>
-        </Link>
-        <h3>Price: ${price}</h3>
-        <a className="ui huge green button">Add to Cart</a>
+      <div className="right-col">
+        <div className="productInfo">
+          <Link to={`/products/${id}`}>
+            <h2>{title}</h2>
+          </Link>
+          <h3>Price: ${price}</h3>
+        </div>
+        <div className="my-button">
+          <a className="ui huge green button">Add to Cart</a>
+        </div>
       </div>
     </div>
   )
