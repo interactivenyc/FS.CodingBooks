@@ -74,10 +74,8 @@ obj
 ) => async dispatch => {
   let res
   const {email, password, method} = obj
-  console.log('GOT TO AUTH DISPATCH. USER.JS. method: ', obj)
   try {
     if (method === 'signup') {
-      console.log('IN SIGN IN AXIOS')
       res = await axios.post(`/auth/${method}`, obj)
     } else {
       res = await axios.post(`/auth/${method}`, {email, password})
