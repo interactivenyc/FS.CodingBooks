@@ -13,6 +13,27 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+//add to cart
+router.post('/add/:id', async (req, res, next) => {
+  const productId = req.params.id
+  if (req.user) {
+    const cartId = req.user.cartId
+    try {
+      console.log('cartId', cartId)
+      console.log('productId', productId)
+      const added = await CartProducts.create({
+        cartId,
+        productId
+      })
+      res.status(201).json(added)
+    } catch (err) {
+      next(err)
+    }
+  } else {
+    res.send('not logged in')
+  }
+})
+
 // api/carts/remove/:productId
 router.delete('/remove/:productId', async (req, res, next) => {
   try {
@@ -23,6 +44,7 @@ router.delete('/remove/:productId', async (req, res, next) => {
       where: {id: itemToDelete.id}
     })
     console.log(deletedItem)
+    res.json(itemToDelete)
   } catch (err) {
     next(err)
   }
