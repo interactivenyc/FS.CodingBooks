@@ -1,5 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {addToCart, removeFromCart} from '../store/user'
 
 function SingleProductInList(props) {
   const {photo, id, title, price, context} = props
@@ -19,9 +21,21 @@ function SingleProductInList(props) {
         </div>
         <div className="my-button">
           {context === 'cart' ? (
-            <a className="ui green button">Remove from Cart</a>
+            <button
+              type="button"
+              onClick={() => props.removeFromCart(props.id)}
+              className="ui green button"
+            >
+              Remove from Cart
+            </button>
           ) : (
-            <a className="ui green button">Add to Cart</a>
+            <button
+              type="button"
+              onClick={() => props.addToCart(props.id)}
+              className="ui green button"
+            >
+              Add to Cart
+            </button>
           )}
         </div>
       </div>
@@ -29,4 +43,11 @@ function SingleProductInList(props) {
   )
 }
 
-export default SingleProductInList
+function mapDispatchToProps(dispatch) {
+  return {
+    addToCart: id => dispatch(addToCart(id)),
+    removeFromCart: id => dispatch(removeFromCart(id))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(SingleProductInList)
