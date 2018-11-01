@@ -8,57 +8,55 @@ class Cart extends Component {
     }
 
     render() {
-        const arr = ['A Title', 'Another Title']
         const cart = this.props.cart || []
         const products = this.props.products || []
+
         const masterArr = cart.map(obj => {
             return products[obj.productId - 1]
-        })
-        console.log('master', masterArr)
-        return (
-            <Fragment>
-                <div className="ui container" id="narrow" style={{margin: '20px'}}>
-                    <div className="ui items">
+        }) || []
+
+        const total = masterArr.reduce((acc, elem) => {
+            return acc + (+elem.price)
+        }, 0)
+
+        return masterArr.length > 0 && (
+            <div className="ui container" id="narrow" style={{margin: '20px'}}>
+                <table className="ui fixed table">
+                    <thead>
+                        <tr><th>Name</th>
+                        <th>Details</th>
+                        <th>Price</th>
+                    </tr></thead>
+                    <tbody>
                         {masterArr.map(obj => {
                             return (
-                            <div key={obj.id} className="item">         
-
-                                <div className="ui small image">
-                                    <img src={obj.photo}></img>
-                                </div>
-
-                                <div className="content">
-                                    <div className="header">{obj.title}</div>
-                                    <div className="meta">
-                                        <span className="price">by This Author</span>
-                                        <span className="stay"></span>
-                                    </div>
-                                    <div className="description">
-                                        <p>qty: 1</p>
-                                    </div>
-                                </div>
-
-                                <div className="content">
-                                    <p>{obj.price}</p>
-                                </div>
-                            </div>
-                            )            
+                                    <tr key={obj.id}>
+                                        <td className="ui small image"><img src={obj.photo}></img></td>
+                                            <td>
+                                                <div>
+                                                    <div className="header">{obj.title}</div>
+                                                    <div className="meta">
+                                                        <span className="price">by This Author</span>
+                                                        <span className="stay"></span>
+                                                    </div>
+                                                    <div className="description">
+                                                        <p>qty: 1???</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        <td>{obj.price}</td>
+                                    </tr>
+                            )
                         })}
-                        <div className="item">
-                        <div className="ui small image">
-                        </div>
-                        <div className="content">
-                        </div>
-                        <div className="content">
-                            <p className="ui header centered row">Total: $500.00</p>
-                        </div>
+                    </tbody>
+                </table>
+                <div className="content">
+                    <p className="ui right aligned header">Total: $ {total}</p>
                     <div className="ui right floated small primary labeled icon button">
                         <i className="shopping bag icon"></i> Check Out
                     </div>
-                    </div>
-                    </div>
                 </div>
-            </Fragment>
+            </div>
         )
     }
 }
