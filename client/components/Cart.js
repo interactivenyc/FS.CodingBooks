@@ -42,10 +42,10 @@ class Cart extends Component {
       <div className="ui container" id="narrow" style={{margin: '20px'}}>
         <table className="ui fixed table">
           <tbody>
-            <tr>
-              {masterArr.map(obj => {
-                return (
-                  <React.Fragment key={keyIndex++}>
+            {masterArr.map(obj => {
+              return (
+                <React.Fragment key={keyIndex++}>
+                  <tr>
                     <td>
                       <SingleProductInList
                         context="cart"
@@ -56,10 +56,10 @@ class Cart extends Component {
                         quantity={obj.quantity}
                       />
                     </td>
-                  </React.Fragment>
-                )
-              })}
-            </tr>
+                  </tr>
+                </React.Fragment>
+              )
+            })}
           </tbody>
         </table>
         <div className="content">
