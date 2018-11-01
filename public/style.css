@@ -29,24 +29,40 @@ form div {
   display: inline-block;
 }
 
+/* Kirsten CSS: */
 .item {
   margin: 50px 50px 50px 50px;
   display: flex
 }
 
-.item img {
+.ui.left.floated.image {
   max-width: 200px;
 }
 
-.content {
-  margin: auto 50px 50px 50px
+.right-col {
+  display: flex;
+  flex-direction:column;
+  padding: 50px
 }
 
-div.td { align-self: center; }
-.navHeader:first-child {
-  margin: 12px;
+.productInfo {
+  flex-grow: 1;
 }
 
+.ui.huge.green.button {
+  display: flex;
+  max-width: 45%;
+  max-height: 30%;
+  margin: 10% 0% 0% 0%
+}
+
+td .content {
+  display: flex;
+  justify-content: start
+ }
+
+
+/* Kirsten CSS: */
 
 .ui.secondary.menu.bgBlue.rightMenu {
   margin-right: 10px;
