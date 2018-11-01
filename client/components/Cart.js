@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import CartItem from './CartItem'
 import SingleProductInList from './SingleProductInList'
 
 class Cart extends Component {
@@ -32,17 +31,22 @@ class Cart extends Component {
             </tr>
           </thead>
           <tbody>
-            {masterArr.map(obj => {
-              return (
-                <SingleProductInList
-                  key={obj.id}
-                  id={obj.id}
-                  photo={obj.photo}
-                  title={obj.title}
-                  price={obj.price}
-                />
-              )
-            })}
+            <tr>
+              <td>
+                {masterArr.map(obj => {
+                  return (
+                    <SingleProductInList
+                      key={obj.id}
+                      context="cart"
+                      id={obj.id}
+                      photo={obj.photo}
+                      title={obj.title}
+                      price={obj.price}
+                    />
+                  )
+                })}
+              </td>
+            </tr>
           </tbody>
         </table>
         <div className="content">

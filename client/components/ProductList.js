@@ -30,6 +30,7 @@ class ProductList extends React.Component {
                   return (
                     <SingleProductInList
                       title={product.title}
+                      context="product-list"
                       id={product.id}
                       photo={product.photo}
                       price={product.price}

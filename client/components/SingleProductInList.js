@@ -2,7 +2,9 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 function SingleProductInList(props) {
-  const {photo, id, title, price} = props
+  const {photo, id, title, price, context} = props
+  console.log('[SingleProductInList] context:', context)
+
   return (
     <div className="item">
       <Link to={`/products/${id}`}>
@@ -16,7 +18,11 @@ function SingleProductInList(props) {
           <h3>Price: ${price}</h3>
         </div>
         <div className="my-button">
-          <a className="ui huge green button">Add to Cart</a>
+          {context === 'cart' ? (
+            <a className="ui green button">Remove from Cart</a>
+          ) : (
+            <a className="ui green button">Add to Cart</a>
+          )}
         </div>
       </div>
     </div>
