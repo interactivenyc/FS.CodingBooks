@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import CartItem from './CartItem'
+import SingleProductInList from './SingleProductInList'
 
 class Cart extends Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class Cart extends Component {
     const cart =
       this.props.cart || JSON.parse(localStorage.getItem('cart')) || []
     const products = this.props.products || []
+    let keyIndex = 0
 
     console.log(localStorage.getItem('cart'))
 
@@ -40,25 +41,25 @@ class Cart extends Component {
     return masterArr.length > 0 ? (
       <div className="ui container" id="narrow" style={{margin: '20px'}}>
         <table className="ui fixed table">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Details</th>
-              <th>Price</th>
-            </tr>
-          </thead>
           <tbody>
-            {masterArr.map(obj => {
-              return (
-                <CartItem
-                  key={obj.id}
-                  photo={obj.photo}
-                  title={obj.title}
-                  price={obj.price}
-                  quantity={obj.quantity}
-                />
-              )
-            })}
+            <tr>
+              {masterArr.map(obj => {
+                return (
+                  <React.Fragment key={keyIndex++}>
+                    <td>
+                      <SingleProductInList
+                        context="cart"
+                        productId={obj.id}
+                        photo={obj.photo}
+                        title={obj.title}
+                        price={obj.price}
+                        quantity={obj.quantity}
+                      />
+                    </td>
+                  </React.Fragment>
+                )
+              })}
+            </tr>
           </tbody>
         </table>
         <div className="content">

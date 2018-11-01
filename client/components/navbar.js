@@ -5,8 +5,6 @@ import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn, user}) => {
-  console.log('[NavBar] render user:', user)
-
   return (
     <div className="bgBlue">
       <div className="ui secondary menu bgBlue">
@@ -30,7 +28,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
           {!isLoggedIn ? (
             <React.Fragment>
               <Link to="/cart" className="item rollover">
-                <i className="shopping cart icon"></i>
+                <i className="shopping cart icon" />
               </Link>
               <Link to="/login" className="item rollover">
                 Log in
@@ -39,7 +37,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
           ) : (
             <React.Fragment>
               <Link to="/cart" className="item rollover">
-                <i className="shopping cart icon"></i>
+                <i className="shopping cart icon" />
               </Link>
               <Link to="#" onClick={handleClick} className="item rollover">
                 Log Out
