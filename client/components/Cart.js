@@ -92,9 +92,11 @@ class Cart extends Component {
         </table>
         <div className="content">
           <p className="ui right aligned header">Total: $ 0.00</p>
-          <div className="ui right floated small primary labeled icon button">
-            <i className="shopping bag icon" /> Check Out
-          </div>
+          <Link to="/checkout">
+            <div className="ui right floated small primary labeled icon button">
+              <i className="shopping bag icon" /> Check Out
+            </div>
+          </Link>
         </div>
       </div>
     )
