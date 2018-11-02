@@ -61,6 +61,12 @@ td .content {
   justify-content: start
  }
 
+ .checkout {
+   padding: 50px;
+   display: flex;
+   flex-direction: column;
+ }
+
 
 /* Kirsten CSS: */
 
