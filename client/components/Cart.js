@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import SingleProductInList from './SingleProductInList'
+import {Link} from 'react-router-dom'
 
 class Cart extends Component {
   constructor(props) {
@@ -66,9 +67,11 @@ class Cart extends Component {
           <p className="ui right aligned header">
             Current Total: $ {total.toFixed(2)}
           </p>
-          <div className="ui right floated small primary labeled icon button">
-            <i className="shopping bag icon" /> Check Out
-          </div>
+          <Link to={{pathname: '/checkout', state: {total: total}}}>
+            <div className="ui right floated small primary labeled icon button">
+              <i className="shopping bag icon" /> Check Out
+            </div>
+          </Link>
         </div>
       </div>
     ) : (
@@ -91,9 +94,11 @@ class Cart extends Component {
         </table>
         <div className="content">
           <p className="ui right aligned header">Total: $ 0.00</p>
-          <div className="ui right floated small primary labeled icon button">
-            <i className="shopping bag icon" /> Check Out
-          </div>
+          <Link to="/checkout">
+            <div className="ui right floated small primary labeled icon button">
+              <i className="shopping bag icon" /> Check Out
+            </div>
+          </Link>
         </div>
       </div>
     )
