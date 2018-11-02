@@ -8,18 +8,16 @@ class Cart extends Component {
   }
 
   render() {
-    const cart =
-      this.props.cart || JSON.parse(localStorage.getItem('cart')) || []
+    const cart = this.props.cart || []
     const products = this.props.products || []
     let keyIndex = 0
-
-    console.log(localStorage.getItem('cart'))
 
     let masterArr =
       cart.map(item => {
         return products.filter(product => product.id === item.productId)[0]
       }) || []
 
+    // console.log(masterArr)
     masterArr = masterArr.reduce(function(rtn, item) {
       if (rtn.filter(n => n.id === item.id).length > 0) {
         rtn.forEach((prod, idx) => {
