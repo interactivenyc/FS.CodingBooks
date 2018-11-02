@@ -14,10 +14,10 @@ function SingleProductInList(props) {
       <div className="right-col">
         <div className="productInfo">
           <Link to={`/products/${productId}`}>
-            <h2>{title}</h2>
+            <h4>{title}</h4>
           </Link>
-          <h3>Price: ${price}</h3>
-          <h3>productId: {productId}</h3>
+          <h4>Price: ${price}</h4>
+          {/* <h4>productId: {productId}</h4> */}
         </div>
         <div className="my-button">
           {context === 'cart' ? (

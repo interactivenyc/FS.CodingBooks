@@ -31,18 +31,21 @@ form div {
 
 /* Kirsten CSS: */
 .item {
-  margin: 50px 50px 50px 50px;
-  display: flex
+  margin: 20px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgb(67, 142, 255);
+  display: flex;
 }
 
 .ui.left.floated.image {
-  max-width: 200px;
+  max-width: 120px;
+  padding-bottom: 25px;
 }
 
 .right-col {
   display: flex;
-  flex-direction:column;
-  padding: 50px
+  flex-direction: column;
+  padding-bottom: 25px;
 }
 
 .productInfo {
@@ -53,20 +56,19 @@ form div {
   display: flex;
   max-width: 45%;
   max-height: 30%;
-  margin: 10% 0% 0% 0%
+  margin: 10% 0% 0% 0%;
 }
 
 td .content {
   display: flex;
-  justify-content: start
- }
+  justify-content: start;
+}
 
- .checkout {
-   padding: 50px;
-   display: flex;
-   flex-direction: column;
- }
-
+.checkout {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
 
 /* Kirsten CSS: */
 
