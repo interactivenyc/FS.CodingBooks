@@ -11,6 +11,7 @@ import {fetchAllProducts} from './store/product'
 import {fetchAllCategories} from './store/category'
 import SingleProduct from './components/SingleProduct'
 import Cart from './components/Cart'
+import CheckoutPage from './components/CheckoutPage'
 
 /**
  * COMPONENT
@@ -34,6 +35,7 @@ class Routes extends Component {
         <Route exact path="/products" component={ConnectedProductList} />
         <Route path="/users" component={UserList} />
         <Route path="/cart" component={Cart} />
+        <Route path="/checkout" component={CheckoutPage} />
       </Switch>
     )
   }

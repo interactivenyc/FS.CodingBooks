@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import SingleProductInList from './SingleProductInList'
+import {Link} from 'react-router-dom'
 
 class Cart extends Component {
   constructor(props) {
