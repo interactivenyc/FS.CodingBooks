@@ -93,8 +93,6 @@ const createApp = () => {
     }
   })
 
-  app.listen(4567)
-
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
 
