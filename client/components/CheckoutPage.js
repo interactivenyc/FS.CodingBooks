@@ -4,11 +4,12 @@ import CheckoutForm from './CheckoutForm'
 
 class CheckoutPage extends Component {
   render() {
+    const total = this.props.location.state.total
     return (
       <StripeProvider apiKey="pk_test_5cuklndlVTMNVNJp1kOPk01G">
         <div className="example">
           <Elements>
-            <CheckoutForm />
+            <CheckoutForm total={total} />
           </Elements>
         </div>
       </StripeProvider>

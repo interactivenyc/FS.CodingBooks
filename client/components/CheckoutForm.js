@@ -7,15 +7,18 @@ class CheckoutForm extends Component {
     super(props)
     this.submit = this.submit.bind(this)
   }
+
   async submit(ev) {
     let {token} = await this.props.stripe.createToken({name: 'Name'})
     let {data} = await axios.post('/charge', {
-      token: token.id
-      // amount
+      token: token.id,
+      amount: (this.props.total * 100).toFixed(0),
+      description: 'Cart transaction'
     })
     console.log(data)
     if (data.status === 'succeeded') console.log('Purchase Complete!')
   }
+
   render() {
     return (
       <div className="checkout">

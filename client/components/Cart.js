@@ -2,15 +2,10 @@ import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import SingleProductInList from './SingleProductInList'
 import {Link} from 'react-router-dom'
-import {setCartTotal} from '../store/total'
 
 class Cart extends Component {
   constructor(props) {
     super(props)
-  }
-
-  componentDidMount() {
-    this.props.setCartTotal(total)
   }
 
   render() {
@@ -44,8 +39,6 @@ class Cart extends Component {
       return acc + +elem.price
     }, 0)
 
-    console.log(`NO THIS: `, total)
-
     return masterArr.length > 0 ? (
       <div className="ui container" id="narrow" style={{margin: '20px'}}>
         <table className="ui fixed table">
@@ -74,9 +67,11 @@ class Cart extends Component {
           <p className="ui right aligned header">
             Current Total: $ {total.toFixed(2)}
           </p>
-          <div className="ui right floated small primary labeled icon button">
-            <i className="shopping bag icon" /> Check Out
-          </div>
+          <Link to={{pathname: '/checkout', state: {total: total}}}>
+            <div className="ui right floated small primary labeled icon button">
+              <i className="shopping bag icon" /> Check Out
+            </div>
+          </Link>
         </div>
       </div>
     ) : (
@@ -113,15 +108,8 @@ class Cart extends Component {
 const mapStateToProps = state => {
   return {
     cart: state.user.cart,
-    products: state.product,
-    total: state.total
+    products: state.product
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCartTotal: total => dispatch(setCartTotal(total))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+export default connect(mapStateToProps)(Cart)
