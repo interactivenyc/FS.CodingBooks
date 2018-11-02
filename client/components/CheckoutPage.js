@@ -15,4 +15,11 @@ class CheckoutPage extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  product: state.product,
+  allCategory: state.category.allCategories,
+  selectedCategory: state.category.selectedCategory
+})
+
 export default CheckoutPage

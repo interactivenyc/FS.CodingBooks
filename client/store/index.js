@@ -5,14 +5,15 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import product from './product'
 import category from './category'
-
 import allUsers from './allUsers'
+import total from './total'
 
 const reducer = combineReducers({
   user,
   allUsers,
   product,
-  category
+  category,
+  total
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
