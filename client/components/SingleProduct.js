@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {addToCart} from '../store/user'
 
 class SingleProduct extends React.Component {
   render() {
@@ -41,7 +42,13 @@ class SingleProduct extends React.Component {
               <div className="ui massive label" style={{alignSelf: 'center'}}>
                 Price: ${product.price}
               </div>
-              <a className="ui huge green button">Add to Cart</a>
+              <button
+                type="button"
+                onClick={() => this.props.addToCart(product.id)}
+                className="ui green button"
+              >
+                Add to Cart
+              </button>
             </div>
           </div>
         )}
@@ -56,4 +63,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(SingleProduct)
+function mapDispatchToProps(dispatch) {
+  return {
+    addToCart: productId => dispatch(addToCart(productId))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
