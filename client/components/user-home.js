@@ -12,7 +12,7 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome, {email}</h3>
-      <div className="pusher">
+      {/* <div className="pusher">
         <div className="ui inverted vertical masthead center aligned segment">
 
           <div className="ui text container">
@@ -92,7 +92,7 @@ export const UserHome = props => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
