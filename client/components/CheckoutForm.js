@@ -11,6 +11,7 @@ class CheckoutForm extends Component {
     let {token} = await this.props.stripe.createToken({name: 'Name'})
     let {data} = await axios.post('/charge', {
       token: token.id
+      // amount
     })
     console.log(data)
     if (data.status === 'succeeded') console.log('Purchase Complete!')
