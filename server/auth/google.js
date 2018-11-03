@@ -36,18 +36,17 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
       const lastName = profile.name.familyName
       const email = profile.emails[0].value
 
-      Cart.create().then(cart => {
-        User.findOrCreate({
-          where: {googleId},
-          defaults: {name, email, firstName, lastName}
-        })
-          .then(([user]) => {
+      User.findOrCreate({
+        where: {googleId},
+        defaults: {name, email, firstName, lastName}
+      }).then(([user]) => {
+        if (!user.cartId) {
+          Cart.create().then(cart => {
             user.cartId = cart.dataValues.id
-            user.save()
-
-            done(null, user)
+            user.save().catch(done)
           })
-          .catch(done)
+        }
+        done(null, user)
       })
     }
   )
