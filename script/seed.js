@@ -49,58 +49,34 @@ async function seed() {
       cartId: 2
     }),
     User.create({
-      lastName: 'Cat',
-      firstName: 'Murphy',
-      address: '52 Murff Drive, Cat Street NY 00000',
+      lastName: 'Monahan',
+      firstName: 'Patrik',
+      address: '123 Pat St, Mon NY 00000',
       phone: '987-675-4321',
-      email: 'murphey@email.com',
+      email: 'pmon@email.com',
       password: '123',
-      cartId: 3
+      cartId: 3,
+      image: 'https://s3.r29static.com//bin/entry/836/680x816,80/2059585/image.jpg'
     }),
     User.create({
-      lastName: 'Cat',
-      firstName: 'Murphy',
-      address: '52 Murff Drive, Cat Street NY 00000',
+      lastName: 'Chng',
+      firstName: 'Kistn',
+      address: '42 Cong St, Krsnt City NY 00000',
       phone: '987-675-4321',
-      email: 'murphay@email.com',
+      email: 'kch@email.com',
       password: '123',
-      cartId: 4
+      cartId: 4,
+      image: 'https://avatars0.githubusercontent.com/u/37722883?s=400&v=4'
     }),
     User.create({
-      lastName: 'Cat',
-      firstName: 'Murphy',
-      address: '52 Murff Drive, Cat Street NY 00000',
+      lastName: 'Warn',
+      firstName: 'Steev',
+      address: '422 Steeve Drive, Warrn City NY 00000',
       phone: '987-675-4321',
-      email: 'murphcy@email.com',
+      email: 'swarn@email.com',
       password: '123',
-      cartId: 5
-    }),
-    User.create({
-      lastName: 'Cat',
-      firstName: 'Murphy',
-      address: '52 Murff Drive, Cat Street NY 00000',
-      phone: '987-675-4321',
-      email: 'murphjy@email.com',
-      password: '123',
-      cartId: 6
-    }),
-    User.create({
-      lastName: 'Cat',
-      firstName: 'Murphy',
-      address: '52 Murff Drive, Cat Street NY 00000',
-      phone: '987-675-4321',
-      email: 'muttrphy@email.com',
-      password: '123',
-      cartId: 7
-    }),
-    User.create({
-      lastName: 'Cat',
-      firstName: 'Murphy',
-      address: '52 Murff Drive, Cat Street NY 00000',
-      phone: '987-675-4321',
-      email: 'murphooy@email.com',
-      password: '123',
-      cartId: 8
+      cartId: 5,
+      image: 'https://media.npr.org/assets/img/2016/03/29/ap_090911089838_sq-3271237f28995f6530d9634ff27228cae88e3440-s1600-c85.jpg'
     })
   ])
 

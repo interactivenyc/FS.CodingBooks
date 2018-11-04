@@ -37,3 +37,29 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+router.get('/:id', async (req, res, next) => {
+  const id = req.params.id
+  console.log("individual found" + id)
+  try {
+    const user = await User.findById(id)
+    res.json(user)
+  } catch(err) {
+    next(err)
+  }
+})
+
+// users/remove/:userId
+router.delete('/remove/:userId', async (req, res, next) => {
+  const id = req.params.userId
+  try {
+    await User.destroy({
+      where: {
+        id
+      }
+    })
+    res.status(202).json(id)
+  } catch(err) {
+    next(err)
+  }
+})

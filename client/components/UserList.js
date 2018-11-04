@@ -14,7 +14,7 @@ class UserList extends Component {
                 <h1>List of Users</h1>
                 <div className="ui six doubling cards">
                     {allUsersArr.map(obj => {
-                        return <UserCard key={obj.id} image={obj.image} firstName={obj.firstName} lastName={obj.lastName} adminStatus={obj.isAdmin} email={obj.email} />
+                        return <UserCard key={obj.id} id={obj.id} image={obj.image} firstName={obj.firstName} lastName={obj.lastName} adminStatus={obj.isAdmin} email={obj.email} />
                     })}
                 </div>
             </Fragment>

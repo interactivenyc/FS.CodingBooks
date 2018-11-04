@@ -17,7 +17,7 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
         </Link>
 
         {user.isAdmin ? (
-          <a href="/api/users" className="item rollover">
+          <a href="/users" className="item rollover">
             Users
           </a>
         ) : (

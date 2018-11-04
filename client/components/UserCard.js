@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { removeUser, getUserInfo } from '../store/allUsers.js'
 
-export default class UserCard extends Component {
+class UserCard extends Component {
     constructor(props) {
         super(props)
     }
 
     render() {
-        const { image, firstName, lastName, adminStatus, email } = this.props
+        const { id, image, firstName, lastName, adminStatus, email, removeUser } = this.props
 
         const admin = (adminStatus) => {
             if (adminStatus) {
@@ -16,11 +18,14 @@ export default class UserCard extends Component {
 
         return (
             <div className="ui card">
-                <a className="image" href="#"><img src={image}></img></a>
+                <a className="image" href={`/users/${id}`}><img src={image}></img></a>
                 <div className="content">
-                    <a className="header" href="#">{firstName} {lastName}</a>
-                    <i className="edit icon"></i>
-                    <i className="trash alternate icon"></i>
+                    <a className="header" href="#" onClick={() => getUserInfo(id)}>{firstName} {lastName}</a>                    
+                    {adminStatus === false && 
+                        <Fragment>
+                            <a href="#"><i className="edit icon"></i></a>
+                            <a href="#" onClick={() => removeUser(id)}><i className="trash alternate icon"></i></a>
+                        </Fragment>}
                     <div className="meta">
                         <a>{admin(adminStatus)}</a>
                     </div>
@@ -30,3 +35,10 @@ export default class UserCard extends Component {
     }
 
 }
+
+const mapDispatchToProps = dispatch => ({
+    removeUser: userId => dispatch(removeUser(userId))
+    // getUserInfo: userId => dispatch(getUserInfo(userId))
+})
+
+export default connect(null, mapDispatchToProps)(UserCard)
