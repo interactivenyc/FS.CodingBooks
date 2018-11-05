@@ -17,7 +17,6 @@ class Cart extends Component {
         return products.filter(product => product.id === item.productId)[0]
       }) || []
 
-    // console.log(masterArr)
     masterArr = masterArr.reduce(function(rtn, item) {
       if (rtn.filter(n => n.id === item.id).length > 0) {
         rtn.forEach((prod, idx) => {

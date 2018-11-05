@@ -29,6 +29,15 @@ const removedFromCart = product => ({type: REMOVED_ITEM_FROM_CART, product})
  */
 export const fetchUserCart = cartId => async dispatch => {
   try {
+    const localCart = JSON.parse(localStorage.getItem('cart'))
+    if (localCart.length > 0) {
+      try {
+        await axios.post(`/api/carts/combine`, localCart)
+        localStorage.setItem('cart', JSON.stringify([]))
+      } catch (err) {
+        console.error(err)
+      }
+    }
     const cart = await axios.get(`/api/carts/${cartId}`)
     dispatch(getUserCart(cart.data))
   } catch (err) {
