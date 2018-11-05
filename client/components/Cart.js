@@ -32,9 +32,11 @@ class Cart extends Component {
       return rtn
     }, [])
 
-    const total = masterArr.reduce((acc, elem) => {
-      return acc + +elem.price
-    }, 0)
+    const total =
+      masterArr.reduce((acc, elem) => {
+        acc += Math.floor(elem.price * 100 * elem.quantity)
+        return acc
+      }, Math.floor(0)) / 100
 
     return masterArr.length > 0 ? (
       <div className="ui container" id="narrow" style={{margin: '20px'}}>
@@ -64,7 +66,7 @@ class Cart extends Component {
           <p className="ui right aligned header">
             Current Total: $ {total.toFixed(2)}
           </p>
-          <Link to={{pathname: '/checkout', state: {total: total}}}>
+          <Link to={{pathname: '/checkout', total: total}}>
             <div className="ui right floated small primary labeled icon button">
               <i className="shopping bag icon" /> Check Out
             </div>
@@ -91,11 +93,15 @@ class Cart extends Component {
         </table>
         <div className="content">
           <p className="ui right aligned header">Total: $ 0.00</p>
-          <Link to="/checkout">
-            <div className="ui right floated small primary labeled icon button">
-              <i className="shopping bag icon" /> Check Out
-            </div>
-          </Link>
+          <div
+            className="ui right floated small primary labeled icon button"
+            onClick={event => {
+              event.preventDefault()
+              alert('Please add at least one item to cart before checking out')
+            }}
+          >
+            <i className="shopping bag icon" /> Checkout
+          </div>
         </div>
       </div>
     )

@@ -28,9 +28,9 @@ if (process.env.NODE_ENV === 'test') {
  * Node process on process.env
  */
 if (process.env.NODE_ENV !== 'production') require('../secrets')
+const keySecret = process.env.SECRET_KEY
 
-//Stripe: Make sure to remove secret key (starts with sk) before deploy
-const stripe = require('stripe')('sk_test_021nwV6qO0W7sFVPhbL6WXgB')
+const stripe = require('stripe')(keySecret)
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
