@@ -56,7 +56,8 @@ async function seed() {
       email: 'pmon@email.com',
       password: '123',
       cartId: 3,
-      image: 'https://s3.r29static.com//bin/entry/836/680x816,80/2059585/image.jpg'
+      image: 'https://s3.r29static.com//bin/entry/836/680x816,80/2059585/image.jpg',
+      isAdmin: true
     }),
     User.create({
       lastName: 'Chng',

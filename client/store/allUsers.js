@@ -16,11 +16,6 @@ const userRemoved = user => ({
     payload: user
 })
 
-// const getUserInfo = id => ({
-//     type: GET_USER_INFO,
-//     payload: id
-// })
-
 //thunk action creators
 export const fetchAllUsers = () => {
     return async dispatch => {

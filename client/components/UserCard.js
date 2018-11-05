@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { removeUser, getUserInfo } from '../store/allUsers.js'
+import { removeUser } from '../store/allUsers.js'
 
 class UserCard extends Component {
     constructor(props) {
@@ -20,13 +20,14 @@ class UserCard extends Component {
             <div className="ui card">
                 <div className="image"><img src={image}></img></div>
                 <div className="content">
-                    <div className="header">{firstName} {lastName}</div>                
+                    <div className="header">{firstName} {lastName}</div>             
                     {adminStatus === false && 
                         <Fragment>
+                            <div>{email}</div>
                             <a href="#" onClick={() => removeUser(id)}><i className="trash alternate icon"></i></a>
                         </Fragment>}
                     <div className="meta">
-                        <a>{admin(adminStatus)}</a>
+                        <div>{admin(adminStatus)}</div>
                     </div>
                 </div>
             </div>

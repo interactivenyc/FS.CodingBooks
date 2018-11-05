@@ -24,8 +24,10 @@ const User = db.define('user', {
   },
   image: {
     type: Sequelize.STRING,
-    validate: {
-      isUrl: true
+    set (valueToBeSet) {
+      if (valueToBeSet === '') {
+        this.setDataValue('name', undefined)
+      }
     },
     defaultValue: 'https://odadee.net/themes/default/assets/images/default.jpg'
   },
