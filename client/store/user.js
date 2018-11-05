@@ -13,7 +13,7 @@ const REMOVED_ITEM_FROM_CART = 'REMOVED_ITEM_FROM_CART'
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const defaultUser = {cart: []}
 
 /**
  * ACTION CREATORS
@@ -101,9 +101,7 @@ export const me = () => async dispatch => {
   }
 }
 
-export const auth = (
-obj
-) => async dispatch => {
+export const auth = obj => async dispatch => {
   let res
   const {email, password, method} = obj
   try {
