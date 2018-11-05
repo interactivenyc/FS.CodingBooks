@@ -1,7 +1,7 @@
 const passport = require('passport')
 const router = require('express').Router()
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
-const {User} = require('../db/models')
+const {User, Cart} = require('../db/models')
 module.exports = router
 
 /**
@@ -36,26 +36,24 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
       const lastName = profile.name.familyName
       const email = profile.emails[0].value
 
-      console.log('GoogleStrategy profile:', name, firstName, lastName)
-      // console.log('GoogleStrategy profile:', profile)
-
       User.findOrCreate({
         where: {googleId},
         defaults: {name, email, firstName, lastName}
+      }).then(([user]) => {
+        if (!user.cartId) {
+          Cart.create().then(cart => {
+            user.cartId = cart.dataValues.id
+            user.save().catch(done)
+          })
+        }
+        done(null, user)
       })
-        .then(([user]) => {
-          console.log('User.findOrCreate', user.firstName, user.lastName)
-
-          done(null, user)
-        })
-        .catch(done)
     }
   )
 
   passport.use(strategy)
 
   router.get('/', passport.authenticate('google', {scope: 'email'}))
-
   router.get(
     '/callback',
     passport.authenticate('google', {

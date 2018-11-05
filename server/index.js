@@ -10,6 +10,7 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+
 module.exports = app
 
 // This is a global Mocha hook, used for resource cleanup.
@@ -27,6 +28,9 @@ if (process.env.NODE_ENV === 'test') {
  * Node process on process.env
  */
 if (process.env.NODE_ENV !== 'production') require('../secrets')
+
+//Stripe: Make sure to remove secret key (starts with sk) before deploy
+const stripe = require('stripe')('sk_test_021nwV6qO0W7sFVPhbL6WXgB')
 
 // passport registration
 passport.serializeUser((user, done) => done(null, user.id))
@@ -72,6 +76,22 @@ const createApp = () => {
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
+
+  //Stripe:
+  app.post('/charge', async (req, res) => {
+    try {
+      let {status} = await stripe.charges.create({
+        amount: req.body.amount,
+        currency: 'usd',
+        description: req.body.description,
+        source: req.body.token
+      })
+      res.sendStatus(200)
+    } catch (err) {
+      console.log(err)
+      res.status(500).end()
+    }
+  })
 
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))

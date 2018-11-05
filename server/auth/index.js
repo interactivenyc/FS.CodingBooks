@@ -22,7 +22,18 @@ router.post('/login', async (req, res, next) => {
 router.post('/signup', async (req, res, next) => {
   try {
     const cart = await Cart.create()
-    const user = await User.create({...req.body, cartId: cart.id})
+
+    const sanitizedUser = {
+      email: req.body.email,
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      address: req.body.address,
+      phone: req.body.phone,
+      image: req.body.image
+    }
+
+    const user = await User.create({...sanitizedUser, cartId: cart.id})
     req.login(user, err => (err ? next(err) : res.json(user)))
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {

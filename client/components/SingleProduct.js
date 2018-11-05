@@ -45,7 +45,7 @@ class SingleProduct extends React.Component {
               <button
                 type="button"
                 onClick={() => this.props.addToCart(product.id)}
-                className="ui huge green button"
+                className="ui green button"
               >
                 Add to Cart
               </button>
@@ -63,7 +63,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+function mapDispatchToProps(dispatch) {
   return {
     addToCart: productId => dispatch(addToCart(productId))
   }
