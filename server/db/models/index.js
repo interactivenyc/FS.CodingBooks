@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize')
 const db = require('../db')
 const User = require('./user')
 const Product = require('./product')
@@ -22,7 +23,16 @@ Category.belongsToMany(Product, {
 Cart.hasOne(User)
 User.belongsTo(Cart)
 
-const CartProducts = db.define('cart_product', {})
+const CartProducts = db.define('cart_product', {
+  paid: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }, 
+  payDate: {
+    type: Sequelize.DATE,
+    defaultValue: null
+  }
+})
 CartProducts.belongsTo(Cart)
 CartProducts.belongsTo(Product)
 

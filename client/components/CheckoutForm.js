@@ -23,6 +23,11 @@ class CheckoutForm extends Component {
         amount: (this.props.total * 100).toFixed(0),
         description: 'Cart transaction'
       })
+      console.log(this.props)
+      //add paid and pay date in association table
+      // await axios.put('/')
+      //clear cart locally and in state if unauthed, state if authed 
+
       history.push('/paymentSuccessful')
     } catch (error) {
       console.log(error)
