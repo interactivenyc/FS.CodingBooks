@@ -57,7 +57,7 @@ class AuthFormSignup extends Component {
                 <div className="fields">
                   <div className="field">
                     <label>Phone</label>
-                    <input name="phone" type="text" placeholder="Phone" maxlength="10"></input>
+                    <input name="phone" type="text" placeholder="Phone" maxLength="10"></input>
                   </div>
                 </div>
 
