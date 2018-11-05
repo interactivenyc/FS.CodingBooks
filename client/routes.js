@@ -57,11 +57,11 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    loadInitialData() {
-      dispatch(me())
-      dispatch(fetchAllUsers())
-      dispatch(fetchAllProducts())
-      dispatch(fetchAllCategories())
+    async loadInitialData() {
+      await dispatch(fetchAllProducts())
+      await dispatch(me())
+      await dispatch(fetchAllUsers())
+      await dispatch(fetchAllCategories())
     }
   }
 }
