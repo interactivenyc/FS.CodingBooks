@@ -14,7 +14,7 @@ class CheckoutForm extends Component {
       let {token} = await this.props.stripe.createToken({name: 'Name'})
       if (!token) {
         alert(
-          'It appears your credit card information is invalid, please try again with correct card information.'
+          'It appears your credit card information is invalid, please update card information highlighted in red'
         )
         throw 'card invalid'
       }
@@ -32,16 +32,25 @@ class CheckoutForm extends Component {
   render() {
     return (
       <div className="checkout">
-        <h2>
-          Please provide your credit card information below to complete your
-          order
-        </h2>
         <div>
-          <CardElement />
+          {this.props.total > 0 ? (
+            <div>
+              <h2>
+                Please provide your credit card information below to complete
+                your order.<br />
+              </h2>
+              <h4>You will be charged ${this.props.total.toFixed(2)}</h4>
+              <div>
+                <CardElement />
+              </div>
+              <a className="ui huge green button" onClick={this.submit}>
+                Complete purchase
+              </a>
+            </div>
+          ) : (
+            <h2>Looks like you don't have any item in your card yet</h2>
+          )}
         </div>
-        <a className="ui huge green button" onClick={this.submit}>
-          Complete purchase
-        </a>
       </div>
     )
   }
