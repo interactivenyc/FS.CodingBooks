@@ -12,6 +12,7 @@ import {fetchAllCategories} from './store/category'
 import SingleProduct from './components/SingleProduct'
 import Cart from './components/Cart'
 import CheckoutPage from './components/CheckoutPage'
+import paymentSuccessful from './components/PaymentSuccessful'
 
 /**
  * COMPONENT
@@ -36,6 +37,7 @@ class Routes extends Component {
         <Route exact path="/users" component={UserList} />
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={CheckoutPage} />
+        <Route path="/paymentSuccessful" component={paymentSuccessful} />
       </Switch>
     )
   }
@@ -55,11 +57,11 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    loadInitialData() {
-      dispatch(me())
-      dispatch(fetchAllUsers())
-      dispatch(fetchAllProducts())
-      dispatch(fetchAllCategories())
+    async loadInitialData() {
+      await dispatch(fetchAllProducts())
+      await dispatch(me())
+      await dispatch(fetchAllUsers())
+      await dispatch(fetchAllCategories())
     }
   }
 }

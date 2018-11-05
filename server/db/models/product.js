@@ -17,6 +17,10 @@ const Product = db.define('product', {
     type: Sequelize.INTEGER,
     defaultValue: 0
   },
+  categoryId: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
   photo: {
     type: Sequelize.STRING,
     defaultValue: '/You_dont_know_JS.jpeg'

@@ -86,7 +86,7 @@ const createApp = () => {
         description: req.body.description,
         source: req.body.token
       })
-      res.json({status})
+      res.sendStatus(200)
     } catch (err) {
       console.log(err)
       res.status(500).end()

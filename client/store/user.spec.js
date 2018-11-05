@@ -11,6 +11,10 @@ import history from '../history'
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
 
+global.window = {}
+import 'mock-local-storage'
+window.localStorage = global.localStorage
+
 describe('thunk creators', () => {
   let store
   let mockAxios
@@ -29,8 +33,9 @@ describe('thunk creators', () => {
 
   describe('me', () => {
     it('eventually dispatches the GET USER action', async () => {
-      const fakeUser = {email: 'Cody'}
+      const fakeUser = {email: 'Cody', cartId: 1}
       mockAxios.onGet('/auth/me').replyOnce(200, fakeUser)
+      mockAxios.onGet(`/api/carts/${fakeUser.cartId}`).replyOnce(200)
       await store.dispatch(me())
       const actions = store.getActions()
       expect(actions[0].type).to.be.equal('GET_USER')

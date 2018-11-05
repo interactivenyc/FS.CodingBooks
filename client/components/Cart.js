@@ -9,12 +9,9 @@ class Cart extends Component {
   }
 
   render() {
-    const cart =
-      this.props.cart || JSON.parse(localStorage.getItem('cart')) || []
+    const cart = this.props.cart || []
     const products = this.props.products || []
     let keyIndex = 0
-
-    console.log(localStorage.getItem('cart'))
 
     let masterArr =
       cart.map(item => {
