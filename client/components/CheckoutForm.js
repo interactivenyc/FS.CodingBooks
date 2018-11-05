@@ -33,21 +33,25 @@ class CheckoutForm extends Component {
     return (
       <div className="checkout">
         <div>
-          <h2>
-            Please provide your credit card information below to complete your
-            order.<br />
-          </h2>
-          <h4>You will be charged ${this.props.total.toFixed(2)}</h4>
-          <div>
-            <CardElement />
-          </div>
-          <a className="ui huge green button" onClick={this.submit}>
-            Complete purchase
-          </a>
+          {this.props.total > 0 ? (
+            <div>
+              <h2>
+                Please provide your credit card information below to complete
+                your order.<br />
+              </h2>
+              <h4>You will be charged ${this.props.total.toFixed(2)}</h4>
+              <div>
+                <CardElement />
+              </div>
+              <a className="ui huge green button" onClick={this.submit}>
+                Complete purchase
+              </a>
+            </div>
+          ) : (
+            <h2>Looks like you don't have any item in your card yet</h2>
+          )}
         </div>
       </div>
-
-      // <h1>Opps, your card is currently empty. Did you forget something?</h1>
     )
   }
 }
