@@ -93,7 +93,8 @@ class Cart extends Component {
           <p className="ui right aligned header">Total: $ 0.00</p>
           <div
             className="ui right floated small primary labeled icon button"
-            onClick={() => {
+            onClick={event => {
+              event.preventDefault()
               alert('Please add at least one item to cart before checking out')
             }}
           >
