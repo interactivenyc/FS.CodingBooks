@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {addToCart, removeFromCart} from '../store/user'
 
 function SingleProductInList(props) {
-  const {photo, productId, title, price, context, quantity} = props
+  const {photo, productId, categoryId, title, price, context, quantity} = props
 
   return (
     <div className="item">
