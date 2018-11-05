@@ -18,12 +18,11 @@ class CheckoutForm extends Component {
         )
         throw 'card invalid'
       }
-      let response = await axios.post('/charge', {
+      await axios.post('/charge', {
         token: token.id,
         amount: (this.props.total * 100).toFixed(0),
         description: 'Cart transaction'
       })
-      console.log(response)
       history.push('/paymentSuccessful')
     } catch (error) {
       console.log(error)

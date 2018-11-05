@@ -67,6 +67,12 @@ td .content {
    flex-direction: column;
  }
 
+ .payment {
+  text-align: center;
+  padding: 50px
+ }
+
+
 /* Kirsten CSS: */
 
 .ui.secondary.menu.bgBlue.rightMenu {
