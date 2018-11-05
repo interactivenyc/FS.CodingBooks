@@ -32,9 +32,11 @@ class Cart extends Component {
       return rtn
     }, [])
 
-    const total = masterArr.reduce((acc, elem) => {
-      return acc + +elem.price
-    }, 0)
+    const total =
+      masterArr.reduce((acc, elem) => {
+        acc += Math.floor(elem.price * 100 * elem.quantity)
+        return acc
+      }, Math.floor(0)) / 100
 
     return masterArr.length > 0 ? (
       <div className="ui container" id="narrow" style={{margin: '20px'}}>

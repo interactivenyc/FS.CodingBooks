@@ -14,6 +14,7 @@ const mockStore = configureMockStore(middlewares)
 global.window = {}
 import 'mock-local-storage'
 window.localStorage = global.localStorage
+global.localStorage.setItem('cart', JSON.stringify([]))
 
 describe('thunk creators', () => {
   let store
