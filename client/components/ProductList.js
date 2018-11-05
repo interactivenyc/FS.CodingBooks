@@ -14,8 +14,6 @@ class ProductList extends React.Component {
   }
 
   categorySelect(categoryId) {
-    console.log('[ProductList] categorySelect', categoryId)
-
     this.setState({
       categoryId
     })
