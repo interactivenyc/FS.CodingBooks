@@ -21,7 +21,7 @@ import SingleProductInList from './SingleProductInList'
 const adapter = new Adapter()
 enzyme.configure({adapter})
 
-describe('Front-End', () => {
+describe('Product List Component', () => {
   let productList
   let initialState = {
     animals: []
@@ -69,9 +69,7 @@ describe('Front-End', () => {
     {id: 3, name: 'React'}
   ]
 
-  describe('<ProductList /> Component Test', () => {
-    let names
-
+  describe('<ProductList /> Pulldown Categories', () => {
     beforeEach(() => {
       productList = ReactTestRenderer.create(
         <Provider store={store}>
@@ -83,9 +81,6 @@ describe('Front-End', () => {
     })
 
     it('renders a category selector menu', () => {
-      console.log('productList TESTS ------------------->')
-      // console.log('productList', productList.exists(SingleProductInList))
-
       let nameArray = [
         productList.root.findByType('ul').props.children[0].props.children,
         productList.root.findByType('ul').props.children[1].props.children,
@@ -99,6 +94,18 @@ describe('Front-End', () => {
         'Algorithm',
         'React'
       ])
+    })
+  })
+
+  describe('<ProductList /> SingleProductInList exists', () => {
+    beforeEach(() => {
+      productList = shallow(
+        <ProductList product={products} allCategory={categories} />
+      )
+    })
+
+    it('renders SingleProductInList items', () => {
+      expect(productList.find(SingleProductInList)).to.have.lengthOf(3)
     })
   })
 })
