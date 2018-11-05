@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {CardElement, injectStripe} from 'react-stripe-elements'
 import axios from 'axios'
+import history from '../history'
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -9,14 +10,24 @@ class CheckoutForm extends Component {
   }
 
   async submit(ev) {
-    let {token} = await this.props.stripe.createToken({name: 'Name'})
-    let {data} = await axios.post('/charge', {
-      token: token.id,
-      amount: (this.props.total * 100).toFixed(0),
-      description: 'Cart transaction'
-    })
-    console.log(data)
-    if (data.status === 'succeeded') console.log('Purchase Complete!')
+    try {
+      let {token} = await this.props.stripe.createToken({name: 'Name'})
+      if (!token) {
+        alert(
+          'It appears your credit card information is invalid, please try again with correct card information.'
+        )
+        throw 'card invalid'
+      }
+      let response = await axios.post('/charge', {
+        token: token.id,
+        amount: (this.props.total * 100).toFixed(0),
+        description: 'Cart transaction'
+      })
+      console.log(response)
+      history.push('/paymentSuccessful')
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   render() {
