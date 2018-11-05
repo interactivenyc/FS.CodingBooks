@@ -18,12 +18,11 @@ class UserCard extends Component {
 
         return (
             <div className="ui card">
-                <a className="image" href={`/users/${id}`}><img src={image}></img></a>
+                <div className="image"><img src={image}></img></div>
                 <div className="content">
-                    <a className="header" href="#" onClick={() => getUserInfo(id)}>{firstName} {lastName}</a>                    
+                    <div className="header">{firstName} {lastName}</div>                
                     {adminStatus === false && 
                         <Fragment>
-                            <a href="#"><i className="edit icon"></i></a>
                             <a href="#" onClick={() => removeUser(id)}><i className="trash alternate icon"></i></a>
                         </Fragment>}
                     <div className="meta">
@@ -38,7 +37,6 @@ class UserCard extends Component {
 
 const mapDispatchToProps = dispatch => ({
     removeUser: userId => dispatch(removeUser(userId))
-    // getUserInfo: userId => dispatch(getUserInfo(userId))
 })
 
 export default connect(null, mapDispatchToProps)(UserCard)

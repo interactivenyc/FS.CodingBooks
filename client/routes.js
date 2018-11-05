@@ -12,7 +12,6 @@ import {fetchAllCategories} from './store/category'
 import SingleProduct from './components/SingleProduct'
 import Cart from './components/Cart'
 import CheckoutPage from './components/CheckoutPage'
-import UserDesc from './components/UserDesc'
 
 /**
  * COMPONENT
@@ -34,7 +33,6 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id" component={SingleProduct} />
         <Route exact path="/products" component={ConnectedProductList} />
-        <Route path="/users/:id" component={UserDesc} />
         <Route exact path="/users" component={UserList} />
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={CheckoutPage} />
