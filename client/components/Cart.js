@@ -66,12 +66,12 @@ class Cart extends Component {
         <div className="content">
           <p className="ui right aligned header">
             Current Total: $ {total.toFixed(2)}
+            <Link to={{pathname: '/checkout', state: {total: total}}}>
+              <div className="ui right floated small primary labeled icon button">
+                <i className="shopping bag icon" /> Check Out
+              </div>
+            </Link>
           </p>
-          <Link to={{pathname: '/checkout', state: {total: total}}}>
-            <div className="ui right floated small primary labeled icon button">
-              <i className="shopping bag icon" /> Check Out
-            </div>
-          </Link>
         </div>
       </div>
     ) : (
@@ -94,11 +94,14 @@ class Cart extends Component {
         </table>
         <div className="content">
           <p className="ui right aligned header">Total: $ 0.00</p>
-          <Link to="/checkout">
-            <div className="ui right floated small primary labeled icon button">
-              <i className="shopping bag icon" /> Check Out
-            </div>
-          </Link>
+          <div
+            className="ui right floated small primary labeled icon button"
+            onClick={() => {
+              alert('Please add at least one item to cart before checking out')
+            }}
+          >
+            <i className="shopping bag icon" /> Checkout
+          </div>
         </div>
       </div>
     )
