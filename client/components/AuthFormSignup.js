@@ -57,14 +57,14 @@ class AuthFormSignup extends Component {
                 <div className="fields">
                   <div className="field">
                     <label>Phone</label>
-                    <input name="phone" type="text" placeholder="Phone"></input>
+                    <input name="phone" type="text" placeholder="Phone" maxLength="10"></input>
                   </div>
                 </div>
 
                 <div className="fields">
                   <div className="field">
                     <label>Image URL</label>
-                    <input name="image" type="url" placeholder="Image URL"></input>
+                    <input name="image" placeholder="Image URL"></input>
                   </div>
                 </div>
 
