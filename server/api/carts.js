@@ -24,8 +24,6 @@ router.post('/add/:id', async (req, res, next) => {
   if (req.user) {
     const cartId = req.user.cartId
     try {
-      console.log('cartId', cartId)
-      console.log('productId', productId)
       const added = await CartProducts.create({
         cartId,
         productId
@@ -50,7 +48,6 @@ router.post('/combine', async (req, res, next) => {
         productId: obj.productId
       })
     })
-    console.log('local cart added to DB cart successfully')
     res.json(cartId)
   } catch (err) {
     next(err)
@@ -63,10 +60,9 @@ router.delete('/remove/:productId', async (req, res, next) => {
     const itemToDelete = await CartProducts.findOne({
       where: {cartId: req.user.cartId, productId: req.params.productId}
     })
-    const deletedItem = await CartProducts.destroy({
+    await CartProducts.destroy({
       where: {id: itemToDelete.id}
     })
-    console.log(deletedItem)
     res.json(itemToDelete)
   } catch (err) {
     next(err)
@@ -97,6 +93,5 @@ try {
   res.sendStatus(202)
 } catch(err) {
   console.error(err)
-  console.log('server/api/carts.js')
 }
 })

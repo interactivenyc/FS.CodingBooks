@@ -30,7 +30,6 @@ const emptyCart = () => ({type: EMPTY_CART})
  * THUNK CREATORS
  */
 export const fetchUserCart = cartId => async dispatch => {
-  console.log('cizzy ar dizzy', cartId)
   try {
     const localCart = JSON.parse(localStorage.getItem('cart'))
     if (localCart.length > 0) {
@@ -68,7 +67,6 @@ export const removeFromCart = productId => async (dispatch, getState) => {
   if (getState().user.id) {
     try {
       const product = await axios.delete(`/api/carts/remove/${productId}`)
-      console.log('[user] dispatch removedFromCart', product.data)
       dispatch(removedFromCart(product.data))
     } catch (err) {
       console.error(err)
@@ -88,12 +86,10 @@ export const removeFromCart = productId => async (dispatch, getState) => {
 
 export const clearCart = (cartId, userId, itemsInCart) => async dispatch => {
   try {
-    console.log('LOOK HERE FOR ITEMS IN CART IN STORE:', itemsInCart)
     userId ? await axios.put('/api/carts/purchase', {
       cartId,
       itemsInCart
     }) : localStorage.setItem('cart', JSON.stringify([]))
-    console.log('going to do empty cart dispatch')
     dispatch(emptyCart())
   } catch(err) {
     console.error(err)
@@ -141,7 +137,6 @@ export const auth = obj => async dispatch => {
 }
 
 export const logout = () => async dispatch => {
-  console.log('LOGGIN OUAUUTE')
   try {
     await axios.post('/auth/logout')
     dispatch(removeUser())

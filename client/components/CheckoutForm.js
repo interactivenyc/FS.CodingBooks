@@ -12,7 +12,6 @@ class CheckoutForm extends Component {
   }
 
   async submit(ev) {
-    console.log('PROOOOPS:', this.props)
     const { userId, cartId, itemsInCart } = this.props
     try {
       let {token} = await this.props.stripe.createToken({name: 'Name'})
