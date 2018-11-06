@@ -40,6 +40,7 @@ class Cart extends Component {
 
     return masterArr.length > 0 ? (
       <div className="ui container" id="narrow" style={{margin: '20px'}}>
+        <h2 className="listingHeader">Shopping Cart</h2>
         <table className="ui fixed table">
           <tbody>
             {masterArr.map(obj => {
@@ -75,6 +76,7 @@ class Cart extends Component {
       </div>
     ) : (
       <div className="ui container" id="narrow" style={{margin: '20px'}}>
+        <h2 className="listingHeader">Shopping Cart</h2>
         <table className="ui fixed table">
           <thead>
             <tr>

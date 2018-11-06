@@ -15,7 +15,11 @@ const Navbar = ({handleClick, isLoggedIn, user}) => {
         <Link to="/products" className="item rollover">
           Product List
         </Link>
-
+        {isLoggedIn && (
+          <Link to="/orders" className="item rollover">
+            Orders
+          </Link>
+        )}
         {user.isAdmin ? (
           <a href="/users" className="item rollover">
             Users

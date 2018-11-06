@@ -25,14 +25,15 @@ function SingleProductInList(props) {
               <div className="description">
                 <p>Quantity: {quantity}</p>
               </div>
-
-              <button
-                type="button"
-                onClick={() => props.removeFromCart(props.productId)}
-                className="ui green button"
-              >
-                Remove from Cart
-              </button>
+              {!props.order && (
+                <button
+                  type="button"
+                  onClick={() => props.removeFromCart(props.productId)}
+                  className="ui green button"
+                >
+                  Remove from Cart
+                </button>
+              )}
             </React.Fragment>
           ) : (
             <button

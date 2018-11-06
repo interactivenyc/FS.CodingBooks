@@ -48,7 +48,7 @@ router.delete('/remove/:userId', async (req, res, next) => {
       }
     })
     res.status(202).json(id)
-  } catch(err) {
+  } catch (err) {
     next(err)
   }
 })
