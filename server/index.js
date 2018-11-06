@@ -79,7 +79,6 @@ const createApp = () => {
 
   //Stripe:
   app.post('/charge', async (req, res) => {
-    console.log('in the charge post')
     try {
       let {status} = await stripe.charges.create({
         amount: req.body.amount,

@@ -7,7 +7,7 @@ import {connect} from 'react-redux'
  */
 export const UserHome = props => {
   const {email, product} = props
-  let featured = product[Math.floor(Math.random() * product.length)]
+  let featured = product ? product[Math.floor(Math.random() * product.length)] : {}
 
   return (
     featured ? (<div>
@@ -29,7 +29,7 @@ export const UserHome = props => {
           <div className="ui middle aligned stackable grid container">
             <div className="row">
               <div className="eight wide column">
-                <h2 className="ui header">Featured Product:</h2>
+                <h2 className="ui header">FEATURED PRODUCT:</h2>
                 <h1 className="ui header">{featured.title}</h1>
                 <p>{featured.description}</p>
               </div>

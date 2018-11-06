@@ -29,7 +29,6 @@ router.get('/', async (req, res, next) => {
         // send everything to anyone who asks!
         // attributes: ['id', 'email']
       })
-      console.log('[API] GET USERS isAdmin - showing results')
       res.json(users)
     } else {
       res.send("sorry, you don't have access to this feature")
