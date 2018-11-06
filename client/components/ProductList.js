@@ -4,7 +4,7 @@ import {NavDropdown, MenuItem} from 'react-bootstrap'
 import {selectCategory} from '../store/category'
 import SingleProductInList from './SingleProductInList'
 
-class ProductList extends React.Component {
+export class ProductList extends React.Component {
   constructor() {
     super()
     this.categorySelect = this.categorySelect.bind(this)
