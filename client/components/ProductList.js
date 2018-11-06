@@ -25,6 +25,9 @@ class ProductList extends React.Component {
 
     return (
       <div>
+        <h2 className="listingHeader">
+          Checkout our latest coding book selections!
+        </h2>
         <NavDropdown title="Select a category to filter" id="nav-dropdown">
           <MenuItem onSelect={() => this.categorySelect(0)}>All</MenuItem>
           {allCategoriesArr.map(category => (
