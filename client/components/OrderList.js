@@ -1,18 +1,25 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchAllOrderItems} from '../store/orders'
 import SingleOrder from './SingleOrder'
+import axios from 'axios'
 
 class OrderList extends React.Component {
-  componentDidMount() {
-    console.log(`DOES CARTID EXIST: `, this.props.cartId)
-    this.props.fetchAllOrderItems(1)
+  constructor(props) {
+    super(props)
+    this.state = {
+      orderList: []
+    }
+  }
+
+  async componentDidUpdate(prevProps) {
+    if (this.props.cartId !== prevProps.cartId) {
+      const {data} = await axios.get(`/api/users/orders/${this.props.cartId}`)
+      this.setState({orderList: data})
+      console.log(this.state.orderList)
+    }
   }
 
   render() {
-    const orderList = this.props.allOrderItems
-    console.log(orderList)
-
     const uniqueOrder = (function(orderList) {
       let uniqueOrder = []
       for (let order of orderList) {
@@ -21,23 +28,28 @@ class OrderList extends React.Component {
         }
       }
       return uniqueOrder
-    })(orderList)
+    })(this.state.orderList)
+
     return (
       <div>
-        <div className="ui container" id="narrow" style={{margin: '20px'}}>
-          <div className="ui message left aligned grid">
-            <div className="ui list" />
-            {uniqueOrder.map(orderDate => (
-              <div>
-                <div key={orderDate}>Ordered on: {orderDate}</div>
-                <SingleOrder
-                  products={this.props.products}
-                  order={orderList.filter(order => order.payDate === orderDate)}
-                />
-              </div>
-            ))}
+        {this.state.orderList && (
+          <div className="ui container" id="narrow" style={{margin: '20px'}}>
+            <div className="ui message left aligned grid">
+              <div className="ui list" />
+              {uniqueOrder.map(orderDate => (
+                <div key={orderDate}>
+                  <div>Ordered on: {orderDate}</div>
+                  <SingleOrder
+                    products={this.props.products}
+                    order={this.state.orderList.filter(
+                      order => order.payDate === orderDate
+                    )}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     )
   }
@@ -45,18 +57,9 @@ class OrderList extends React.Component {
 
 const mapStateToProps = state => ({
   cartId: state.user.cartId,
-  allOrderItems: state.orders,
   products: state.product
 })
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchAllOrderItems: cartId => dispatch(fetchAllOrderItems(cartId))
-  }
-}
-
-const ConnectedOrderList = connect(mapStateToProps, mapDispatchToProps)(
-  OrderList
-)
+const ConnectedOrderList = connect(mapStateToProps)(OrderList)
 
 export default ConnectedOrderList

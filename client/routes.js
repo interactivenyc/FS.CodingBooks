@@ -9,13 +9,11 @@ import {me} from './store'
 import {fetchAllUsers} from './store/allUsers'
 import {fetchAllProducts} from './store/product'
 import {fetchAllCategories} from './store/category'
-import {fetchAllOrderItems} from './store/orders'
 import SingleProduct from './components/SingleProduct'
 import Cart from './components/Cart'
 import CheckoutPage from './components/CheckoutPage'
 import paymentSuccessful from './components/PaymentSuccessful'
 import ConnectedOrderList from './components/OrderList'
-import SingleOrder from './components/SingleOrder'
 
 /**
  * COMPONENT
@@ -42,7 +40,6 @@ class Routes extends Component {
         <Route path="/checkout" component={CheckoutPage} />
         <Route path="/paymentSuccessful" component={paymentSuccessful} />
         <Route path="/orders" component={ConnectedOrderList} />
-        <Route path="/singleorder" component={SingleOrder} />
       </Switch>
     )
   }
