@@ -1,12 +1,18 @@
 const router = require('express').Router()
 const {CartProducts} = require('../db/models')
+// const Sequelize = require('sequelize')
 
 module.exports = router
 
 // api/carts/:id
 router.get('/:id', async (req, res, next) => {
   try {
-    const cart = await CartProducts.findAll({where: {cartId: req.params.id}})
+    const cart = await CartProducts.findAll({
+      where: {
+        cartId: req.params.id,
+        paid: false
+      }
+    })
     res.json(cart)
   } catch (err) {
     next(err)
@@ -66,4 +72,21 @@ router.delete('/remove/:productId', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
+})
+
+// api/carts/purchase
+router.put('/purchase', async (req, res, next) => {
+  console.log('reqbody', req.body)
+  const { cartId } = req.body
+  const [numberOfAffectedRows, affectedRows] = await CartProducts.update({
+    paid: true,
+    // payDate: Sequelize.NOW,
+    returning: true
+  }, {
+    where: {
+      cartId
+    }
+  })
+  console.log('affected rows', affectedRows)
+  res.json(affectedRows)
 })

@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import {CardElement, injectStripe} from 'react-stripe-elements'
 import axios from 'axios'
 import history from '../history'
+import {connect} from 'react-redux'
+import {clearCart} from '../store/user'
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -10,6 +12,7 @@ class CheckoutForm extends Component {
   }
 
   async submit(ev) {
+    const { userId, cartId, cart } = this.props
     try {
       let {token} = await this.props.stripe.createToken({name: 'Name'})
       if (!token) {
@@ -23,11 +26,7 @@ class CheckoutForm extends Component {
         amount: (this.props.total * 100).toFixed(0),
         description: 'Cart transaction'
       })
-      console.log(this.props)
-      //add paid and pay date in association table
-      // await axios.put('/')
-      //clear cart locally and in state if unauthed, state if authed 
-
+      this.props.clearCart(cartId, userId)
       history.push('/paymentSuccessful')
     } catch (error) {
       console.log(error)
@@ -60,4 +59,16 @@ class CheckoutForm extends Component {
     )
   }
 }
-export default injectStripe(CheckoutForm)
+
+const mapStateToProps = state => ({
+  userId: state.user.id,
+  cartId: state.user.cartId,
+  cart: state.user.cart,
+})
+
+const mapDispatchToProps = dispatch => ({
+  clearCart: (cartId, userId) => dispatch(clearCart(cartId, userId))
+})
+
+
+export default injectStripe(connect(mapStateToProps, mapDispatchToProps)(CheckoutForm))
