@@ -15,7 +15,6 @@ class OrderList extends React.Component {
     if (this.props.cartId) {
       const { data } = await axios.get(`/api/users/orders/${this.props.cartId}`)
       this.setState({ orderList: data })
-      console.log(this.state.orderList)
     }
   }
 
@@ -23,7 +22,6 @@ class OrderList extends React.Component {
     if (this.props.cartId !== prevProps.cartId) {
       const { data } = await axios.get(`/api/users/orders/${this.props.cartId}`)
       this.setState({ orderList: data })
-      console.log(this.state.orderList)
     }
   }
 
