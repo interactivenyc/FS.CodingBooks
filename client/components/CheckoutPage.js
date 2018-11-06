@@ -5,11 +5,12 @@ import CheckoutForm from './CheckoutForm'
 class CheckoutPage extends Component {
   render() {
     const total = this.props.location.total
+    const itemsInCart = this.props.location.itemsInCart
     return (
       <StripeProvider apiKey="pk_test_H6iUWtTDHwKtEXofhVLUqvSe">
         <div className="example">
           <Elements>
-            <CheckoutForm total={total} />
+            <CheckoutForm total={total} itemsInCart={itemsInCart}/>
           </Elements>
         </div>
       </StripeProvider>

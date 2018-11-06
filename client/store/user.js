@@ -9,6 +9,7 @@ const REMOVE_USER = 'REMOVE_USER'
 const GET_USER_CART = 'GET_USER_CART'
 const ADDED_ITEM_TO_CART = 'ADDED_ITEM_TO_CART'
 const REMOVED_ITEM_FROM_CART = 'REMOVED_ITEM_FROM_CART'
+const EMPTY_CART = 'EMPTY_CART'
 
 /**
  * INITIAL STATE
@@ -23,11 +24,13 @@ const removeUser = () => ({type: REMOVE_USER})
 const getUserCart = cart => ({type: GET_USER_CART, cart})
 const addedToCart = product => ({type: ADDED_ITEM_TO_CART, product})
 const removedFromCart = product => ({type: REMOVED_ITEM_FROM_CART, product})
+const emptyCart = () => ({type: EMPTY_CART})
 
 /**
  * THUNK CREATORS
  */
 export const fetchUserCart = cartId => async dispatch => {
+  console.log('cizzy ar dizzy', cartId)
   try {
     const localCart = JSON.parse(localStorage.getItem('cart'))
     if (localCart.length > 0) {
@@ -80,6 +83,20 @@ export const removeFromCart = productId => async (dispatch, getState) => {
     }
     localStorage.setItem('cart', JSON.stringify(localCart))
     dispatch(removedFromCart({productId}))
+  }
+}
+
+export const clearCart = (cartId, userId, itemsInCart) => async dispatch => {
+  try {
+    console.log('LOOK HERE FOR ITEMS IN CART IN STORE:', itemsInCart)
+    userId ? await axios.put('/api/carts/purchase', {
+      cartId,
+      itemsInCart
+    }) : localStorage.setItem('cart', JSON.stringify([]))
+    console.log('going to do empty cart dispatch')
+    dispatch(emptyCart())
+  } catch(err) {
+    console.error(err)
   }
 }
 
@@ -155,7 +172,8 @@ export default function(state = defaultUser, action) {
         }
       }
       return {...state, cart: [...state.cart]}
-
+    case EMPTY_CART:
+      return {...state, cart: []}
     default:
       return state
   }
