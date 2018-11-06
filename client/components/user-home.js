@@ -7,11 +7,10 @@ import {connect} from 'react-redux'
  */
 export const UserHome = props => {
   const {email, product} = props
-  console.log('[UserHome] render email:', email)
-  
+  let featured = product ? product[Math.floor(Math.random() * product.length)] : {}
 
   return (
-    <div>
+    featured ? (<div>
       {email ? <h3>Welcome, {email}</h3> : <h3>Welcome</h3>}
       <div className="pusher">
         <div className="ui inverted vertical masthead center aligned segment">
@@ -30,18 +29,17 @@ export const UserHome = props => {
           <div className="ui middle aligned stackable grid container">
             <div className="row">
               <div className="eight wide column">
-                <h2 className="ui header">We Help Companies and Companions</h2>
-                <p>We can give your company superpowers to do things that they never thought possible. Let us delight your customers and empower your needs...through pure data analytics.</p>
-                <h2 className="ui header">We Make Bananas That Can Dance</h2>
-                <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
+                <h2 className="ui header">FEATURED PRODUCT:</h2>
+                <h1 className="ui header">{featured.title}</h1>
+                <p>{featured.description}</p>
               </div>
               <div className="six wide right floated column">
-                <img src="" className="ui large bordered rounded image"></img>
+                <img src={featured.photo}></img>
               </div>
             </div>
             <div className="row">
               <div className="center aligned column">
-                <a className="ui huge button">Check Them Out</a>
+                <a href={"products/" + featured.id} className="ui huge button">Take a Look</a>
               </div>
             </div>
           </div>
@@ -52,14 +50,12 @@ export const UserHome = props => {
           <div className="ui equal width stackable internally celled grid">
             <div className="center aligned row">
               <div className="column">
-                <h2>"What a Company"</h2>
-                <p>That is what they all say about us</p>
+                <h2>"These Coding book guys are awesome"</h2>
+                <p>- Cody</p>
               </div>
               <div className="column">
-                <h2>"I shouldn't have gone with their competitor."</h2>
-                <p>
-                  <img src="favicon.ico" className="ui avatar image"></img> <b>Nan</b> Chief Fun Officer Acme Toys
-                </p>
+                <h2>"I'll never buy a coding book from anywhere else!"</h2>
+                <p>- Cody again</p>
               </div>
             </div>
           </div>
@@ -78,7 +74,8 @@ export const UserHome = props => {
           </div>
         </div>
       </div>
-    </div>
+    </div>) :
+    <div></div>
   )
 }
 
