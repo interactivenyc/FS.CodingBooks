@@ -48,7 +48,20 @@ router.delete('/remove/:userId', async (req, res, next) => {
       }
     })
     res.status(202).json(id)
-  } catch(err) {
+  } catch (err) {
     next(err)
   }
+})
+
+// api/users/orders/:cartId
+router.get('/orders/:cartId', async (req, res, next) => {
+  const cartId = req.params.cartId
+  const orders = await CartProducts.findAll({
+    attributes: ['payDate', 'id', 'cartId', 'productId'],
+    where: {
+      cartId,
+      paid: true
+    }
+  })
+  res.json(orders)
 })
