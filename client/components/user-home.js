@@ -12,7 +12,7 @@ export const UserHome = props => {
 
   return (
     <div>
-      {email ? <h3>Welcome, {email}</h3> : <h3>Welcome!</h3>}
+      {email ? <h3>Welcome, {email}</h3> : <h3>Welcome</h3>}
       <div className="pusher">
         <div className="ui inverted vertical masthead center aligned segment">
 
@@ -36,7 +36,7 @@ export const UserHome = props => {
                 <p>Yes that's right, you thought it was the stuff of dreams, but even bananas can be bioengineered.</p>
               </div>
               <div className="six wide right floated column">
-                <img src="https://media.giphy.com/media/Q56SF4czEtSZG/giphy.gif" className="ui large bordered rounded image"></img>
+                <img src="" className="ui large bordered rounded image"></img>
               </div>
             </div>
             <div className="row">
