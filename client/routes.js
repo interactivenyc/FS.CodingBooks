@@ -15,6 +15,7 @@ import Cart from './components/Cart'
 import CheckoutPage from './components/CheckoutPage'
 import paymentSuccessful from './components/PaymentSuccessful'
 import ConnectedOrderList from './components/OrderList'
+import SingleOrder from './components/SingleOrder'
 
 /**
  * COMPONENT
@@ -41,6 +42,7 @@ class Routes extends Component {
         <Route path="/checkout" component={CheckoutPage} />
         <Route path="/paymentSuccessful" component={paymentSuccessful} />
         <Route path="/orders" component={ConnectedOrderList} />
+        <Route path="/singleorder" component={SingleOrder} />
       </Switch>
     )
   }

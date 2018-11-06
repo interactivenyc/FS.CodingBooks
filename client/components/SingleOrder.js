@@ -2,13 +2,14 @@ import React from 'react'
 import SingleProductInList from './SingleProductInList'
 
 const SingleOrder = props => {
+  console.log(`single order props!: `, props)
   const order = props.order
   const products = props.products
   let keyIndex = 0
 
   const orderProducts = products.reduce((rtn, product) => {
     const inOrder = order.filter(item => {
-      return item.productId === product.id
+      return item.id === product.id
     })
     if (inOrder.length > 0) {
       product.quantity = inOrder.length

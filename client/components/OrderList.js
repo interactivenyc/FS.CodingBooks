@@ -27,17 +27,20 @@ class OrderList extends React.Component {
       }
       return uniqueOrder
     })(orderList)
-
-    //   <SingleOrder
-    //     orders={orderList.filter(order => order.payDate === order)}
-    //   />
-
     return (
       <div>
         <div className="ui container" id="narrow" style={{margin: '20px'}}>
           <div className="ui message left aligned grid">
             <div className="ui list" />
-            {uniqueOrder.map(order => <div />)}
+            {uniqueOrder.map(orderDate => (
+              <div>
+                <div>Ordered on: {orderDate}</div>
+                <SingleOrder
+                  products={this.props.products}
+                  order={orderList.filter(order => order.payDate === orderDate)}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -47,7 +50,8 @@ class OrderList extends React.Component {
 
 const mapStateToProps = state => ({
   cartId: state.user.cartId,
-  allOrderItems: state.orders
+  allOrderItems: state.orders,
+  products: state.product
 })
 
 const mapDispatchToProps = dispatch => {
