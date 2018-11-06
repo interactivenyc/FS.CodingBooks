@@ -5,18 +5,13 @@ import SingleOrder from './SingleOrder'
 
 class OrderList extends React.Component {
   componentDidMount() {
-    this.props.fetchAllOrderItems(this.props.cartId)
+    console.log(`DOES CARTID EXIST: `, this.props.cartId)
+    this.props.fetchAllOrderItems(1)
   }
 
   render() {
-    const orderList = [
-      {id: 1, payDate: '12/15/18'},
-      {id: 2, payDate: '12/16/18'},
-      {id: 3, payDate: '12/15/18'},
-      {id: 4, payDate: '12/12/18'},
-      {id: 5, payDate: '12/12/18'}
-    ]
-    // const orderList = this.props.allOrderItems;
+    const orderList = this.props.allOrderItems
+    console.log(orderList)
 
     const uniqueOrder = (function(orderList) {
       let uniqueOrder = []
@@ -34,7 +29,7 @@ class OrderList extends React.Component {
             <div className="ui list" />
             {uniqueOrder.map(orderDate => (
               <div>
-                <div>Ordered on: {orderDate}</div>
+                <div key={orderDate}>Ordered on: {orderDate}</div>
                 <SingleOrder
                   products={this.props.products}
                   order={orderList.filter(order => order.payDate === orderDate)}

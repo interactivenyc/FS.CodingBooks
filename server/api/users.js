@@ -58,19 +58,11 @@ router.delete('/remove/:userId', async (req, res, next) => {
 router.get('/orders/:cartId', async (req, res, next) => {
   const cartId = req.params.cartId
   const orders = await CartProducts.findAll({
-<<<<<<< HEAD
-    attributes: ['payDate', 'id', 'cartId', 'productId'],
-=======
     attributes: ['payDate', 'id', 'cartId', 'productId', 'pricePaid'],
->>>>>>> master
     where: {
       cartId,
       paid: true
     }
   })
   res.json(orders)
-<<<<<<< HEAD
 })
-=======
-})
->>>>>>> master
