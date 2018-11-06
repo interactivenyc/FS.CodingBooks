@@ -124,6 +124,7 @@ export const auth = obj => async dispatch => {
 }
 
 export const logout = () => async dispatch => {
+  console.log('LOGGIN OUAUUTE')
   try {
     await axios.post('/auth/logout')
     dispatch(removeUser())
