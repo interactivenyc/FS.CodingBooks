@@ -1,7 +1,8 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, CartProducts} = require('../db/models')
 module.exports = router
 
+// api/users
 router.get('/', async (req, res, next) => {
   let isAdmin = false
 
@@ -51,4 +52,17 @@ router.delete('/remove/:userId', async (req, res, next) => {
   } catch(err) {
     next(err)
   }
+})
+
+// api/users/orders/:cartId
+router.get('/orders/:cartId', async (req, res, next) => {
+  const cartId = req.params.cartId
+  const orders = await CartProducts.findAll({
+    attributes: ['payDate', 'id', 'cartId', 'productId', 'pricePaid'],
+    where: {
+      cartId,
+      paid: true
+    }
+  })
+  res.json(orders)
 })
