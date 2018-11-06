@@ -11,6 +11,14 @@ class OrderList extends React.Component {
     }
   }
 
+  async componentDidMount() {
+    if (this.props.cartId) {
+      const {data} = await axios.get(`/api/users/orders/${this.props.cartId}`)
+      this.setState({orderList: data})
+      console.log(this.state.orderList)
+    }
+  }
+
   async componentDidUpdate(prevProps) {
     if (this.props.cartId !== prevProps.cartId) {
       const {data} = await axios.get(`/api/users/orders/${this.props.cartId}`)
@@ -32,7 +40,7 @@ class OrderList extends React.Component {
 
     return (
       <div>
-        {this.state.orderList && (
+        {this.state.orderList.length > 0 ? (
           <div className="ui container" id="narrow" style={{margin: '20px'}}>
             <div className="ui message left aligned grid">
               <div className="ui list" />
@@ -49,6 +57,8 @@ class OrderList extends React.Component {
               ))}
             </div>
           </div>
+        ) : (
+          <div className="listingHeader">You have not placed any orders</div>
         )}
       </div>
     )
