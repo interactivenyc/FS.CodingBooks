@@ -35,6 +35,7 @@ const SingleOrder = props => {
                   <td>
                     <SingleProductInList
                       context="cart"
+                      order={true}
                       productId={product.id}
                       photo={product.photo}
                       title={product.title}
