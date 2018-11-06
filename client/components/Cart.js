@@ -66,7 +66,7 @@ class Cart extends Component {
           <p className="ui right aligned header">
             Current Total: $ {total.toFixed(2)}
           </p>
-          <Link to={{pathname: '/checkout', total: total}}>
+          <Link to={{pathname: '/checkout', total: total, itemsInCart: masterArr}}>
             <div className="ui right floated small primary labeled icon button">
               <i className="shopping bag icon" /> Check Out
             </div>

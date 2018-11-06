@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const {CartProducts} = require('../db/models')
-// const Sequelize = require('sequelize')
 
 module.exports = router
 
@@ -52,7 +51,7 @@ router.post('/combine', async (req, res, next) => {
       })
     })
     console.log('local cart added to DB cart successfully')
-    res.json(cartId) //send back entire cart?
+    res.json(cartId)
   } catch (err) {
     next(err)
   }
@@ -76,17 +75,28 @@ router.delete('/remove/:productId', async (req, res, next) => {
 
 // api/carts/purchase
 router.put('/purchase', async (req, res, next) => {
-  console.log('reqbody', req.body)
-  const { cartId } = req.body
-  const [numberOfAffectedRows, affectedRows] = await CartProducts.update({
-    paid: true,
-    // payDate: Sequelize.NOW,
-    returning: true
-  }, {
-    where: {
-      cartId
-    }
+  const currentDateAndTime = new Date()
+  const dateTimeStr = currentDateAndTime.toString()
+  const { cartId, itemsInCart } = req.body
+try {
+  itemsInCart.forEach(async obj => {
+    await CartProducts.update({
+      paid: true,
+      payDate: dateTimeStr,
+      pricePaid: +obj.price,
+      returning: true
+    }, {
+      where: {
+        cartId,
+        paid: false,
+        productId: obj.id
+      }
+    })
   })
-  console.log('affected rows', affectedRows)
-  res.json(affectedRows)
+
+  res.sendStatus(202)
+} catch(err) {
+  console.error(err)
+  console.log('server/api/carts.js')
+}
 })

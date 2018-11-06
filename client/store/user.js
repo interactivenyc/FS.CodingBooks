@@ -86,11 +86,14 @@ export const removeFromCart = productId => async (dispatch, getState) => {
   }
 }
 
-export const clearCart = (cartId, userId) => async dispatch => {
+export const clearCart = (cartId, userId, itemsInCart) => async dispatch => {
   try {
+    console.log('LOOK HERE FOR ITEMS IN CART IN STORE:', itemsInCart)
     userId ? await axios.put('/api/carts/purchase', {
-      cartId
+      cartId,
+      itemsInCart
     }) : localStorage.setItem('cart', JSON.stringify([]))
+    console.log('going to do empty cart dispatch')
     dispatch(emptyCart())
   } catch(err) {
     console.error(err)
@@ -170,7 +173,6 @@ export default function(state = defaultUser, action) {
       }
       return {...state, cart: [...state.cart]}
     case EMPTY_CART:
-      console.log('empty cart baby yeah!')
       return {...state, cart: []}
     default:
       return state

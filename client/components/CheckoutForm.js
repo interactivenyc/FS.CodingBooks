@@ -12,7 +12,8 @@ class CheckoutForm extends Component {
   }
 
   async submit(ev) {
-    const { userId, cartId, cart } = this.props
+    console.log('PROOOOPS:', this.props)
+    const { userId, cartId, itemsInCart } = this.props
     try {
       let {token} = await this.props.stripe.createToken({name: 'Name'})
       if (!token) {
@@ -26,7 +27,7 @@ class CheckoutForm extends Component {
         amount: (this.props.total * 100).toFixed(0),
         description: 'Cart transaction'
       })
-      this.props.clearCart(cartId, userId)
+      this.props.clearCart(cartId, userId, itemsInCart)
       history.push('/paymentSuccessful')
     } catch (error) {
       console.log(error)
@@ -67,7 +68,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  clearCart: (cartId, userId) => dispatch(clearCart(cartId, userId))
+  clearCart: (cartId, userId, cart) => dispatch(clearCart(cartId, userId, cart))
 })
 
 

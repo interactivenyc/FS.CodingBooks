@@ -29,7 +29,11 @@ const CartProducts = db.define('cart_product', {
     defaultValue: false
   }, 
   payDate: {
-    type: Sequelize.DATE,
+    type: Sequelize.STRING,
+    defaultValue: null
+  },
+  pricePaid: {
+    type: Sequelize.DECIMAL(10, 2),
     defaultValue: null
   }
 })
