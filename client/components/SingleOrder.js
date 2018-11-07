@@ -8,7 +8,7 @@ const SingleOrder = props => {
 
   const orderProducts = products.reduce((rtn, product) => {
     const inOrder = order.filter(item => {
-      return item.id === product.id
+      return item.productId === product.id
     })
     if (inOrder.length > 0) {
       product.quantity = inOrder.length
