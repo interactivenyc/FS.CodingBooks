@@ -6,9 +6,6 @@ const SingleOrder = props => {
   const products = props.products
   let keyIndex = 0
 
-  console.log(order)
-  console.log(products)
-
   const orderProducts = products.reduce((rtn, product) => {
     const inOrder = order.filter(item => {
       return item.productId === product.id
