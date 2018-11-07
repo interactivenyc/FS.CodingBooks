@@ -12,8 +12,6 @@ import AuthFormSignup from './AuthFormSignup'
 export const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
-  console.log('[ AuthForm ] render', name)
-
   return name === 'signup' ? <AuthFormSignup name={name} displayName={displayName} handleSubmit={handleSubmit} error={error} /> : <AuthFormLogin name={name} displayName={displayName} handleSubmit={handleSubmit} error={error} />
 }
 
@@ -24,45 +22,6 @@ export const AuthForm = props => {
  *   function, and share the same Component. This is a good example of how we
  *   can stay DRY with interfaces that are very similar to each other!
  */
-// const mapLogin = state => {
-//   return {
-//     name: 'login',
-//     displayName: 'Login',
-//     error: state.user.error
-//   }
-// }
-
-// const mapSignup = state => {
-//   return {
-//     name: 'signup',
-//     displayName: 'Sign Up',
-//     error: state.user.error
-//   }
-// }
-
-// const mapDispatch = dispatch => {
-//   return {
-//     handleSubmit(evt) {
-//       evt.preventDefault()
-//       const formName = evt.target.name
-//       const email = evt.target.email.value
-//       const password = evt.target.password.value
-
-//       console.log('[auth-form] submit', formName)
-
-//       if (formName === 'signup') {
-//         const firstName = evt.target.firstName.value
-//         const lastName = evt.target.lastName.value
-//         dispatch(auth(email, password, formName, firstName, lastName))
-//       } else {
-//         dispatch(auth(email, password, formName))
-//       }
-//     }
-//   }
-// }
-
-// export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-// export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
 
 /**
  * PROP TYPES
