@@ -7,7 +7,7 @@ class CheckoutPage extends Component {
     const total = this.props.location.total
     const itemsInCart = this.props.location.itemsInCart
     return (
-      <StripeProvider apiKey="pk_test_H6iUWtTDHwKtEXofhVLUqvSe">
+      <StripeProvider apiKey="pk_test_Jq3uSSYBeOH1knjLyuv0fvJd">
         <div className="example">
           <Elements>
             <CheckoutForm total={total} itemsInCart={itemsInCart}/>
